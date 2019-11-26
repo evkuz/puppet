@@ -1,0 +1,130 @@
+#!/bin/sh
+#
+# This script will be executed *after* all the other init scripts.
+# You can put your own initialization stuff in here if you don't
+# want to do the full Sys V style init stuff.
+
+# 22.01.2019 by EK 
+# Make check of exit command, and if there is error the /var/log/node_setup.log will be written with the error.
+
+#service condor stop
+#service puppet stop
+#/root/set_fqdn.sh
+#/root/init_lvm.sh
+#sleep 5
+#service condor start
+#sleep 5
+#service puppet start
+
+
+
+SETUPLOG="/var/log/node_setup.log"
+
+touch $SETUPLOG
+cp /dev/null $SETUPLOG
+touch /var/lock/subsys/local
+
+#SERVICE="condor"
+#service $SERVICE stop
+#if [ $? -eq 0 ]
+#then
+#  echo "Successfully stopped $SERVICE" > $SETUPLOG
+#else
+#  echo "Could not stopped $SERVICE" >&2
+#  echo "Could not stopped $SERVICE" >> $SETUPLOG
+#fi
+
+service_array=(condor puppet)
+
+#SERVICE="puppet"
+
+for index in ${!service_array[*]}
+do
+
+service ${service_array[$index]} stop
+if [ $? -eq 0 ]
+then
+  echo "$(date +"%d-%m-%Y %T") Successfully stopped ${service_array[$index]}" >> $SETUPLOG
+else
+  echo "$(date +"%d-%m-%Y %T") Could not stopped ${service_array[$index]}" >&2
+  echo "$(date +"%d-%m-%Y %T") Could not stopped ${service_array[$index]}" >> $SETUPLOG
+fi
+sleep 1
+done
+# Остановили сервисы, выполняем необходимые действия
+
+# Меняем runinterval для агента
+echo "runinterval=300" >> /etc/puppetlabs/puppet/puppet.conf
+if [ $? -eq 0 ]
+then
+  echo "$(date +"%d-%m-%Y %T") Successfully changed runinterval at /etc/puppetlabs/puppet/puppet.conf" >> $SETUPLOG
+else
+  echo "$(date +"%d-%m-%Y %T") Could NOT change runinterval at /etc/puppetlabs/puppet/puppet.conf" >> $SETUPLOG
+
+fi
+
+
+# run script
+/root/set_fqdn.sh
+if [ $? -eq 0 ]
+then
+  echo "$(date +"%d-%m-%Y %T") Successfully executed last command of script set_fqdn.sh" >> $SETUPLOG
+else 
+  echo "$(date +"%d-%m-%Y %T") Could NOT execute last command of script set_fqdn.sh" >> $SETUPLOG
+
+fi
+
+
+# run script
+/root/init_lvm.sh
+
+if [ $? -eq 0 ]
+then
+  echo "$(date +"%d-%m-%Y %T") Successfully executed last command of script init_lvm.sh" >> $SETUPLOG
+else
+  echo "$(date +"%d-%m-%Y %T") Could NOT execute last command of script init_lvm.sh" >> $SETUPLOG
+
+fi
+
+
+# Запускаем сервисы, остановленные ранее
+
+for index in ${!service_array[*]}
+do
+service ${service_array[$index]} start
+if [ $? -eq 0 ]
+then
+  echo "$(date +"%d-%m-%Y %T") Successfully started ${service_array[$index]}" >> $SETUPLOG
+else
+  echo "$(date +"%d-%m-%Y %T") Could not start $SERVICE" >&2
+  echo "$(date +"%d-%m-%Y %T") Could not start $SERVICE" >> $SETUPLOG
+fi
+sleep 1
+done
+
+# Проверяем вывод /var/log/messages на предмет соответствия hostname в этом файле и в реале.
+
+CMD_MESSAGES="$(tail --lines=1 /var/log/messages |  cut -d ' ' -f4)"
+
+CMD_SHORT_HOSTNAME="$(hostname -s)"
+
+# Надо сравнить вывод этих команд
+if [ "$CMD_MESSAGES" == "$CMD_SHORT_HOSTNAME" ]
+ then
+     echo "$(date +"%d-%m-%Y %T") rsyslog gets correct hostname $CMD_SHORT_HOSTNAME" >> $SETUPLOG
+else
+    echo "$(date +"%d-%m-%Y %T") !!! rsyslog sees WRONG hostname !!! like [$CMD_MESSAGES] but it should be [$CMD_SHORT_HOSTNAME]" >> $SETUPLOG
+    echo "$(date +"%d-%m-%Y %T") make init6 via VNC console" >> $SETUPLOG
+fi
+
+
+
+
+#/root/set_fqdn.sh
+#/root/init_lvm.sh
+
+#sleep 5
+#service condor start
+#sleep 5
+#service puppet start
+

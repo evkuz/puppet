@@ -1,0 +1,88 @@
+#!/bin/bash
+#
+# This script will be executed *after* all the other init scripts.
+# You can put your own initialization stuff in here if you don't
+# want to do the full Sys V style init stuff.
+
+# 22.01.2019 by EK 
+# Make check of exit command, and if there is error the /var/log/node_setup.log will be written with the error.
+
+# 0 — STDIN, 1 — STDOUT и 2 — STDERR
+
+SETUPLOG="/var/log/node_setup.log"
+CURR_DATE="$(date +"%d-%m-%Y"_"%H:%M:%S")"
+
+touch $SETUPLOG
+cp /dev/null $SETUPLOG
+touch /var/lock/subsys/local
+
+#SERVICE="condor"
+#service $SERVICE stop
+#if [ $? -eq 0 ]
+#then
+#  echo "Successfully stopped $SERVICE" > $SETUPLOG
+#else
+#  echo "Could not stopped $SERVICE" >&2
+#  echo "Could not stopped $SERVICE" >> $SETUPLOG
+#fi
+
+# date +"%d-%m-%Y"_"%H:%M:%S"
+# Надо сформировать строку
+
+#echo "$(date +"%d-%m-%Y"_"%H:%M:%S") : ######################## Starting rc.local script #######################" >> $SETUPLOG 2>&1
+echo "$CURR_DATE : ######################## Starting rc.local script #######################" >> $SETUPLOG 2>&1
+
+SERVICE="puppet"
+echo "$CURR_DATE : $(service $SERVICE status)" >> $SETUPLOG 2>&1
+
+echo "$CURR_DATE : $(service $SERVICE stop)"  >> $SETUPLOG 2>&1
+if [ $? -eq 0 ]
+then
+  echo "$CURR_DATE : Successfully stopped $SERVICE" >> $SETUPLOG 
+else
+  echo "$CURR_DATE : ERROR : Could not stop $SERVICE" >> $SETUPLOG # >&2 - это в /dev/null
+#  echo "Could not stopped $SERVICE" >> $SETUPLOG
+fi
+
+echo "$CURR_DATE : $(service $SERVICE start)" >> $SETUPLOG 2>&1
+if [ $? -eq 0 ]
+then
+  echo "$CURR_DATE : Successfully started $SERVICE" >> $SETUPLOG
+else
+  echo "$CURR_DATE : ERROR : Could not start $SERVICE" >>$SETUPLOG
+#  echo "Could not start $SERVICE" >> $SETUPLOG
+fi
+
+
+#/root/set_fqdn.sh
+#/root/init_lvm.sh
+
+#sleep 5
+#service condor start
+#sleep 5
+#service puppet start
+
+# Проверяем вывод /var/log/messages на предмет соответствия hostname в этом файле и в реале.
+
+CMD_MESSAGES="tail --lines=1 /var/log/messages |  cut -d ' ' -f4"
+
+CMD_SHORT_HOSTNAME="hostname -s"
+
+# Надо сравнить вывод этих команд
+if [ "$CMD_MESSAGES" = "$CMD_SHORT_HOSTNAME"]; then
+
+    echo "$CURR_DATE : rsyslog is OK" >> $SETUPLOG
+else
+    echo "$CURR_DATE : rsyslog has wrong HOSTNAME, so going to restart" >> $SETUPLOG
+fi
+
+SERVICE=rsyslog
+service $SERVICE restart
+if [ $? -eq 0 ]
+then
+  echo "$CURR_DATE : Successfully restarted $SERVICE" >> $SETUPLOG
+else
+  echo "$CURR_DATE : ERROR : Could not restart $SERVICE" >>$SETUPLOG
+fi
+
+
