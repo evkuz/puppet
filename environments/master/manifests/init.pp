@@ -1,12 +1,14 @@
+class master {
 package {'lsof':
-ensure => latest
+ensure => latest,
 }
 # cut runinterval=300
-file_line {"remove_runinterval":
-ensure => absent,
-path   => '/etc/puppetlabs/puppet/puppet.conf',
+#file_line {"remove_runinterval":
+#ensure => absent,
+#path   => '/etc/puppetlabs/puppet/puppet.conf',
 #line   => '',
-match  => '^runinterval=300',
-match_for_absence => true,
-}
+#match  => '^runinterval=300',
+#match_for_absence => true,
+#}
 
+}

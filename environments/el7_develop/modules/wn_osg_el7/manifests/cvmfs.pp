@@ -33,13 +33,13 @@ class wn_osg_el7::cvmfs {
 # Если в файле на агенте уже такие строки есть, но в другом порядке, то файл останется без изменений.
 # Т.е. проверяется наличие такой строки в файле, а уж в каком порядке - не важно.
 
-$line_1 = "/dev/mapper/wn-cvmfs    /mnt/cvmfs      ext4    defaults        0       0"
-$line_2 = "/dev/mapper/wn-condor   /mnt/condor     ext4    defaults        0       0"
-$line_3 = "10.93.221.50:/nova	   /nova	   nfs	   rw,vers=4.1	   0	   0"
-file_line {"nfs_folders":
-ensure => present,
-path   => '/etc/fstab',
-line   => [$line_1, $line_2, $line_3],
+#$line_1 = "/dev/mapper/wn-cvmfs    /mnt/cvmfs      ext4    defaults        0       0"
+#$line_2 = "/dev/mapper/wn-condor   /mnt/condor     ext4    defaults        0       0"
+#$line_3 = "10.93.221.50:/nova	   /nova	   nfs	   rw,vers=4.1	   0	   0"
+#file_line {"nfs_folders":
+#ensure => present,
+#path   => '/etc/fstab',
+#line   => [$line_1, $line_2, $line_3],
 
 #match  => '^#\sinclude\s"/usr/share/nano/sh.nanorc"',
 # match will look for a line beginning with "# include /usr/share/nano/sh.nanorc" and replace it with the value in "line"
@@ -47,4 +47,4 @@ line   => [$line_1, $line_2, $line_3],
 #/dev/mapper/wn-condor   /mnt/condor     ext4    defaults        0       0
 
 
-}
+#}

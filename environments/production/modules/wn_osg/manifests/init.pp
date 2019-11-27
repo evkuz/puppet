@@ -33,11 +33,16 @@
 #include wn_osg::htcondor_repo
 #include wn_osg::authconfig_ldap
 
+#include yum_update
+#include check_template
+
 class wn_osg {
 
 #  include autofs
 #  include network
 
+######################### 27.11.2019
+#contain wn_osg::yum_update
 ######################### 25.11.2019
 contain  wn_osg::put_ssh_key
 
@@ -343,133 +348,4 @@ contain wn_osg::check_config_symlink
 #/etc/puppetlabs/code/environments/develop/modules/wn_osg
 }#  class wn_osg
 ###############################################################################
-
-class yum_update {
-
-#  package { 'osg-wn-client-glexec':
-#        ensure => absent,
-#  }
-
-
-schedule { 'osg_update':
-  range  => '2 - 6',
-  period => daily,
-  repeat => 1,
-
-}
-
-# При такой записи - без schedule - файл появляется, если был удален, а удаление файла не происходит, т.к.
-# schedule уже отработал
-
-   file { "/root/update_osg.sh":
-
-    schedule => 'osg_update',
-    ensure => file,
-    source => 'puppet:///modules/wn_osg/update_osg.sh',
-    mode => "0755",
-    owner => 'root',
-    group => 'root',
-
-    notify => Exec["update_osg"],
-    }
-
-
-
-exec {"update_osg":
-   
-     schedule => 'osg_update',
-
-     command => "/bin/bash -c '/root/update_osg.sh'", # && yum -q -y update
-#Вместо скрипта можно просто запускать команду, удалять скрипт потом не надо. Но наличие файла скрипта сообщает, что обновления не прошли.
-#command => "yum clean all; yum -q -y update --exclude cvs",
-     timeout => 3600,
-#     onlyif => "/bin/bash -c '/usr/bin/test `/bin/date +%d` -eq 15 && test `/bin/date +%H` -eq 16 && test `/bin/date +%M` -eq 18 '",  date '+%u' -eq 7
-     # Обновляемся только по четверграм (4-й день недели) в 10 утра.
-#     onlyif => "/bin/bash -c '/usr/bin/test `/bin/date +%u` -eq 4 && test `/bin/date +%H` -eq 10", 
-
-# Убираю, ибо обновляться надо всегда, но по schedule
-# Помним что, если файл скрипта 'update_osg.sh' обновился вне schedule, то следующее обновление
-# произойдет только по schedule, т.к. не случится refresh
-#     refreshonly => true,
-     provider => "shell",
-     notify => Exec["remove_update_osg"],
-     }
-
-exec {"remove_update_osg":
-
-     command => "/bin/bash -c 'rm -f /root/update_osg.sh'",
-     refreshonly => true,
-     provider => "shell",
-
-   }
-
-############################################## 22.10.2018 #####################
-# Добавляю отдельный {schedule + exec} для удаления update_osg.sh
-
-#schedule { 'rm_osg_update':
-#  range  => '7 - 10',
-#  period => daily,
-#  repeat => 1,
-
-#}
-
-
-#exec {"rm_update_osg":
-
-#     schedule => 'rm_osg_update',
-#     command => "/bin/bash -c 'rm -f /root/update_osg.sh'", 
-#     provider => "shell",
-
-#   }
-#################################################
-
-
-notify { 'update-passed':
-        withpath => false,
- }
-
-}#class yum_update
-#//////////////////////////////////////////////////////
-
-class check_template {
-
-file {'/root/check_script.sh':
-
-    ensure =>file,
-    mode => "0755",
-    owner => 'root',
-    group => 'root',
-
-    content => template('wn_osg/check_script.sh.erb'),
-    notify => Exec["run_script"],
-}
-
-exec {"run_script":
-
-    command  => "/bin/bash -c '/root/check_script.sh'",
-    cwd      => "/root",
-    timeout  => 1800,
-    provider => "shell",
-#      notify{"exec stage passed"},
-    notify => Exec["remove_script"],
-    refreshonly => true,
-     }
-
-exec {"remove_script":
-
-     command => "/bin/bash -c 'rm -f /root/check_script.sh'",
-        cwd  => "/root",
-    provider => "shell",
-#      notify{"exec stage passed"},
-  refreshonly => true,
-     }
-
-
-notify{"remove_script stage passed":}
-
-
-} # class check_template
-
-####################################################3
-
 
