@@ -1,16 +1,6 @@
-#include autofs
-#include packages
-#include check_file
-#include network
-#include gridmap_check 
-#include fwall
-
-
 ########################## Сцуко, очень важно тут прописать !!!
 include wn_osg
-#include htcondor_update
-#include check_template
-#include yum_update
+include yum_update
 
 
 #Задаем параметры сетевого интерфейса eth0 для файла /etc/sysconfig/network-scripts/ifcfg-eth0

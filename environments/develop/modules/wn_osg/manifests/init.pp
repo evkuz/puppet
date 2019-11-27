@@ -318,7 +318,7 @@ package {'condor':
 
 # wn_osg::repo_file {"epel.repo"   : notify_class =>'yum_update', }
 
-contain yum_update
+# contain yum_update
 
 # ensure that package 'mc' is installed when 'yum_update' applied
 # this was used to check that @sl6x repo has been updated and used
