@@ -9,6 +9,7 @@ Manage rsync package
 
 ## Parameters: ##
     $package_ensure - any of the valid values for the package resource: present, absent, purged, held, latest
+    $manage_package - setting this to false stops the rsync package resource from being managed
 
 ## Sample Usage: ##
     class { 'rsync': package_ensure => 'latest' }
@@ -81,23 +82,28 @@ put files via rsync
 sets up a rsync server
 
 ## Parameters: ##
-    $path            - path to data
-    $comment         - rsync comment
-    $motd            - file containing motd info
-    $read_only       - yes||no, defaults to yes
-    $write_only      - yes||no, defaults to no
-    $list            - yes||no, defaults to no
-    $uid             - uid of rsync server, defaults to 0
-    $gid             - gid of rsync server, defaults to 0
-    $incoming_chmod  - incoming file mode, defaults to 644
-    $outgoing_chmod  - outgoing file mode, defaults to 644
-    $max_connections - maximum number of simultaneous connections allowed, defaults to 0
-    $lock_file       - file used to support the max connections parameter, defaults to /var/run/rsyncd.lock only needed if max_connections > 0
-    $secrets_file    - path to the file that contains the username:password pairs used for authenticating this module
-    $auth_users      - list of usernames that will be allowed to connect to this module (must be undef or an array)
-    $hosts_allow     - list of patterns allowed to connect to this module (man 5 rsyncd.conf for details, must be undef or an array)
-    $hosts_deny      - list of patterns allowed to connect to this module (man 5 rsyncd.conf for details, must be undef or an array)
-    $refuse_options  - list of rsync command line options that will be refused by your rsync daemon.
+    $path               - path to data
+    $comment            - rsync comment
+    $motd               - file containing motd info
+    $read_only          - yes||no, defaults to yes
+    $write_only         - yes||no, defaults to no
+    $list               - yes||no, defaults to no
+    $uid                - uid of rsync server, defaults to 0
+    $gid                - gid of rsync server, defaults to 0
+    $incoming_chmod     - incoming file mode, defaults to 644
+    $outgoing_chmod     - outgoing file mode, defaults to 644
+    $max_connections    - maximum number of simultaneous connections allowed, defaults to 0
+    $lock_file          - file used to support the max connections parameter, defaults to /var/run/rsyncd.lock only needed if max_connections > 0
+    $secrets_file       - path to the file that contains the username:password pairs used for authenticating this module
+    $auth_users         - list of usernames that will be allowed to connect to this module (must be undef or an array)
+    $hosts_allow        - list of patterns allowed to connect to this module (man 5 rsyncd.conf for details, must be undef or an array)
+    $hosts_deny         - list of patterns allowed to connect to this module (man 5 rsyncd.conf for details, must be undef or an array)
+    $transfer_logging   - parameter enables per-file logging of downloads and uploads in a format somewhat similar to that used by ftp daemons.
+    $log_format         - This parameter allows you to specify the format used for logging file transfers when transfer logging is enabled. See the rsyncd.conf documentation for more details.
+    $refuse_options     - list of rsync command line options that will be refused by your rsync daemon.
+    $ignore_nonreadable - This  tells  the  rsync daemon to completely ignore files that are not readable by the user.
+    $pre_xfer_exec      - command to be run before the transfer
+    $post_xfer_exec     - command to be run before the transfer
 
 ## Actions: ##
   sets up an rsync server
@@ -115,9 +121,23 @@ sets up a rsync server
 To disable default values for ``incoming_chmod`` and ``outgoing_chmod``, and
 do not add empty values to the resulting config, set both values to ``false``
 
+    include rsync::server
     rsync::server::module { 'repo':
       path           => $base,
       incoming_chmod => false,
       outgoing_chmod => false,
       require        => File[$base],
     }
+
+# Configuring via Hiera #
+``rsync::put``, ``rsync::get``, and ``rsync::server::module`` resources can be
+configured using Hiera hashes. For example:
+
+    rsync::server::modules:
+      myrepo:
+        path: /mypath
+        incoming_chmod: false
+        outgoing_chmod: false
+      myotherrepo:
+        path: /otherpath
+        read_only: false

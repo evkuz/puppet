@@ -5,7 +5,10 @@
 #include gridmap_check 
 #include fwall
 
+
+########################## Сцуко, очень важно тут прописать !!!
 include wn_osg
+#include htcondor_update
 #include check_template
 #include yum_update
 
@@ -15,18 +18,29 @@ include wn_osg
 # Модуль был нужен, когда надо было переписать gateway на всех агентах
 # На сегодня, 19.12.2018, можно пока отключить.
 
-#network::interface {'eth0':
-# ipaddress => $ipaddress,
-# netmask   => $netmask,
-# gateway   => '10.93.220.1',
+###############################################################
+# Так не работает. Должна быть соблюдена структура модуля
+#class wn_update{
+
+#package {'mc':
+#          ensure => latest,
 
 #}
 
-#class {"fwall":
-
-#script_path => "/etc/sysconfig",
-#script_name => "iptables-wn.sh",
 #}
+###############################################################
+network::interface {'eth0':
+ ipaddress => $ipaddress,
+ netmask   => $netmask,
+ gateway   => '10.93.220.1',
+
+}
+
+class {"fwall":
+
+script_path => "/etc/sysconfig",
+script_name => "iptables-wn.sh",
+}
 
 #class {'gridmap_check':
 #etalon => '/home/check_content.txt',

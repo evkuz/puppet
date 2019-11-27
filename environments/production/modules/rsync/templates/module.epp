@@ -1,0 +1,59 @@
+# This file is being maintained by Puppet.
+# DO NOT EDIT
+
+[ <%= $name %> ]
+path               = <%= $path %>
+read only          = <%= $read_only %>
+write only         = <%= $write_only %>
+list               = <%= $list %>
+uid                = <%= $uid %>
+gid                = <%= $gid %>
+<% if $incoming_chmod { -%>
+incoming chmod     = <%= $incoming_chmod %>
+<% } -%>
+<% if $outgoing_chmod { -%>
+outgoing chmod     = <%= $outgoing_chmod %>
+<% } -%>
+max connections    = <%= $max_connections %>
+<% if Integer($max_connections) > 0 { -%>
+lock file          = <%= $lock_file %>
+<% } -%>
+<% if $comment { -%>
+comment            = <%= $comment %>
+<% } -%>
+<% if $secrets_file { -%>
+secrets file       = <%= $secrets_file %>
+<% } -%>
+<% if $auth_users { -%>
+auth users         = <%= $auth_users.join(', ')%>
+<% } -%>
+<% if $hosts_allow { -%>
+hosts allow        = <%= $hosts_allow.join(' ')%>
+<% } -%>
+<% if $hosts_deny { -%>
+hosts deny         = <%= $hosts_deny.join(' ')%>
+<% } -%>
+<% if $exclude { -%>
+exclude            = <%= $exclude.join(' ')%>
+<% } -%>
+<% if $transfer_logging { -%>
+transfer logging   = <%= $transfer_logging %>
+<% } -%>
+<% if $log_format { -%>
+log format         = <%= $log_format %>
+<% } -%>
+<% if $refuse_options { -%>
+refuse options     = <%= $refuse_options.join(' ')%>
+<% } -%>
+<% if $ignore_nonreadable { -%>
+ignore nonreadable = <%= $ignore_nonreadable %>
+<% } -%>
+<% if $log_file { -%>
+log file           = <%= $log_file %>
+<% } -%>
+<% if $pre_xfer_exec { -%>
+pre-xfer exec      = <%= $pre_xfer_exec %>
+<% } -%>
+<% if $post_xfer_exec { -%>
+post-xfer exec     = <%= $post_xfer_exec %>
+<% } -%>

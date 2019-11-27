@@ -7,30 +7,42 @@
 #   class rsync
 #
 class rsync::server(
-  $use_xinetd = true,
-  $address    = '0.0.0.0',
-  $motd_file  = 'UNSET',
-  $use_chroot = 'yes',
-  $uid        = 'nobody',
-  $gid        = 'nobody'
+  $use_xinetd      = true,
+  $address         = '0.0.0.0',
+  $motd_file       = 'UNSET',
+  $use_chroot      = 'yes',
+  $uid             = 'nobody',
+  $gid             = 'nobody',
+  $port            = '873',
+  $modules         = {},
+  $syslog_facility = 'local3',
 ) inherits rsync {
 
   $conf_file = $::osfamily ? {
-    'Debian' => '/etc/rsyncd.conf',
+    'Debian'  => '/etc/rsyncd.conf',
+    'RedHat'  => '/etc/rsyncd.conf',
+    'suse'    => '/etc/rsyncd.conf',
+    'FreeBSD' => '/usr/local/etc/rsync/rsyncd.conf',
     default  => '/etc/rsync.conf',
+  }
+  $servicename = $::osfamily ? {
+    'suse'    => 'rsyncd',
+    'RedHat'  => 'rsyncd',
+    'FreeBSD' => 'rsyncd',
+    default   => 'rsync',
   }
 
   if $use_xinetd {
     include xinetd
     xinetd::service { 'rsync':
       bind        => $address,
-      port        => '873',
+      port        => $port,
       server      => '/usr/bin/rsync',
       server_args => "--daemon --config ${conf_file}",
       require     => Package['rsync'],
     }
   } else {
-    service { 'rsync':
+    service { $servicename:
       ensure     => running,
       enable     => true,
       hasstatus  => true,
@@ -60,8 +72,10 @@ class rsync::server(
   # - $motd_file
   concat::fragment { 'rsyncd_conf_header':
     target  => $conf_file,
-    content => template('rsync/header.erb'),
+    content => epp('rsync/header.epp'),
     order   => '00_header',
   }
+
+  create_resources(rsync::server::module, $modules)
 
 }

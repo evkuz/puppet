@@ -1,3 +1,68 @@
+##2017-04-13 - Release 0.6.2
+###Summary
+- Set conffile and service name for FreeBSD, https://github.com/puppetlabs/puppetlabs-rsync/pull/87
+- New paramter to set syslog facility
+
+##2017-02-08 - Release 0.6.1
+###Summary
+- New parameters
+  - rsync::server::module
+    - `$pre_xfer_exec`
+    - `$post_xfer_exec`
+
+##2017-01-05 - Release 0.6.0
+###Summary
+Force array type for array params of rsync::server::module. 
+In previous versions it was possible to pass string values for array params. The switch to epp
+let to string values split by character
+
+##2016-12-15 - Release 0.5.3
+###Summary
+This release replaces erb templates with epp templates
+
+##2016-10-04 - Release 0.5.2
+###Summary
+This release improves test and metadata
+
+####Features
+- Add metadata_lint check
+- Add os_supportt metadata
+- Bound ranges for dependencies
+- Add tags
+
+##2016-10-05 - Release 0.5.1
+###Summary
+This release includes new parameters.
+
+####Features
+- New parameters
+  - rsync::server::module
+    - `$log_file`
+    - `$ignore_nonreadable`
+
+
+##2016-09-21 - Release 0.5.0
+###Summary
+This release includes several new parameters and puppet 4 support.
+
+####Features
+- Add SuSE and RedHat support
+- New parameters
+  - rsync
+    - `$manage_package`
+    - `$puts`
+    - `$gets`
+  - rsync::server
+    - `port`
+  - rsync::server::module
+    - `transfer_logging`
+    - `log_format`
+
+####Bugfixes
+- Fix testing
+- Compatibility with puppet 4 and future parser
+
+
 ##2015-01-20 - Release 0.4.0
 ###Summary
 

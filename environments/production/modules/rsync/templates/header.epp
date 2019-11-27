@@ -1,0 +1,15 @@
+# This file is being maintained by Puppet.
+# DO NOT EDIT
+
+pid file = /var/run/rsyncd.pid
+uid = <%= $rsync::server::uid %>
+gid = <%= $rsync::server::gid %>
+use chroot = <%= $rsync::server::use_chroot %>
+log format = %t %a %m %f %b
+syslog facility = <%= $rsync::server::syslog_facility %>
+timeout = 300
+address = <%= $rsync::server::address %>
+port = <%= $rsync::server::port %>
+<% if $rsync::server::motd_file != 'UNSET' { -%>
+motd file = <%= $rsync::server::motd_file %>
+<% } -%>

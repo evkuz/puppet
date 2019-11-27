@@ -1,10 +1,12 @@
 #!/bin/bash
-#Скрипт с правилами iptables применяемый на рабочих узлах NOvA
-#
+
+
+########    iptables for Worker Node wn_221_xxx.jinr.ru  ##############
+
+
 echo "Loading iptables rules"
 
 NET_JINR="159.93.0.0/16"
-NET_221="10.93.220.0/22" # Сеть серых ip для кластера grid nova work-nodes
 
 #It's not a router so don't forward
 #echo 1 > /proc/sys/net/ipv4/ip_forward
@@ -17,15 +19,15 @@ iptables -t mangle -F
 iptables -t mangle -X
 iptables -t filter -F
 iptables -t filter -X
-
-iptables -F -t raw
+ 
+iptables -F -t raw 
 
 iptables -P INPUT DROP
-iptables -P FORWARD DROP
-iptables -P OUTPUT ACCEPT
 
+iptables -P OUTPUT ACCEPT
+iptables -P FORWARD DROP
 echo "loopback allowed..."
-iptables -A INPUT -i lo -m comment --comment "Allow all for loopback" -j ACCEPT # А на выход вообще всё везде открыто
+iptables -A INPUT -i lo -j ACCEPT # А на выход вообще всё везде открыто
 
 #Table mangle
 
@@ -41,8 +43,7 @@ iptables -t mangle -A POSTROUTING -j ACCEPT
 
 
 iptables -t filter -A INPUT -p tcp -m tcp --dport 22 -m comment --comment "Allow SSH" -j ACCEPT
-iptables -t filter -A INPUT -s $NET_JINR -m comment --comment "Let all from JINR" -j ACCEPT
-iptables -t filter -A INPUT -s $NET_221  -m comment --comment "Allow local 10.93.221.xxx cluster, though it's already fine" -j ACCEPT
+iptables -t filter -A INPUT -s $NET_JINR -j ACCEPT
 
 #+++++++++++++++++++++++ GRID special rules ++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -74,4 +75,8 @@ iptables -t nat -A OUTPUT      -j ACCEPT
 #Table raw
 iptables -t raw -A PREROUTING  -j ACCEPT
 iptables -t raw -A OUTPUT      -j ACCEPT
+
+sleep 1
+
+iptables-save > /etc/sysconfig/iptables
 

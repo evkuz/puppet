@@ -2,7 +2,8 @@ require 'spec_helper'
 describe 'rsync::server', :type => :class do
   let(:facts) do
     {
-      :concat_basedir => '/dne'
+      :concat_basedir => '/dne',
+      :osfamily       => 'Debian',
     }
   end
 
@@ -17,6 +18,7 @@ describe 'rsync::server', :type => :class do
       })
       is_expected.to contain_concat__fragment('rsyncd_conf_header').with_content(/^use chroot\s*=\s*yes$/)
       is_expected.to contain_concat__fragment('rsyncd_conf_header').with_content(/^address\s*=\s*0.0.0.0$/)
+      is_expected.to contain_concat__fragment('rsyncd_conf_header').with_content(/^syslog facility\s*=\s*local3$/)
     }
   end
 
@@ -62,6 +64,16 @@ describe 'rsync::server', :type => :class do
     }
   end
 
+  describe 'when overriding port' do
+    let :params do
+      { :port => '2001' }
+    end
+
+    it {
+      is_expected.to contain_concat__fragment('rsyncd_conf_header').with_content(/^port\s*=\s*2001$/)
+    }
+  end
+
   describe 'when overriding uid' do
     let :params do
       { :uid => 'testuser' }
@@ -82,4 +94,35 @@ describe 'rsync::server', :type => :class do
     }
   end
 
+  describe 'on SuSE, use_xinetd => false' do
+    let(:params) do
+      {
+        :use_xinetd => false,
+      }
+    end
+    let(:facts) do
+      {
+        :osfamily => 'SuSE',
+        :concat_basedir => '/dne',
+      }
+    end
+
+    it{ is_expected.to contain_service('rsyncd') }
+  end
+
+  describe 'on Red Hat, use_xinetd => false' do
+    let(:params) do
+      {
+        :use_xinetd => false,
+      }
+    end
+    let(:facts) do
+      {
+        :osfamily => 'RedHat',
+        :concat_basedir => '/dne',
+      }
+    end
+
+    it{ is_expected.to contain_service('rsyncd') }
+  end
 end
