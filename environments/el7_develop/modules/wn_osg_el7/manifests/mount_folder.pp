@@ -1,3 +1,4 @@
+# Монтируем папку /nova
 class wn_osg_el7::mount_folder {
 
 ######### Создаем папку /nova ########
