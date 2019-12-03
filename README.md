@@ -38,3 +38,6 @@ Static config files or config file templates would typically be part of that.
 - Проверка наличия symlink
 - Разделение ресурсов по классам и периодическое включение/отключение необходимых ресурсов через класс.
 - 27.11.2019 Обновили puppetserver до версии 6.11.1
+
+- 03.12.2019 В прошлых коммитах не работал ресурс "file_line". Установил пакет stdlib c forge.puppet.com конкретно в окружение el7_develop, и после этого ресурс "file_line" заработал как надо. 
+             Ставится командой puppet module install puppetlabs-stdlib --version 6.1.0 --environment el7_develop
