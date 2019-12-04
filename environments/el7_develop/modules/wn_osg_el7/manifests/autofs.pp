@@ -15,9 +15,13 @@ class wn_osg_el7::autofs {
   mode   => "0755",
   }
 ################################# Создаем папку /mnt/condor , /mnt/cvmfs для монтирования туда nfs-папок 
- file {['/mnt/condor', '/mnt/cvmfs']:
+# Владельцы этих папок прописываются в скрипте /root/init_lvm.sh, поэтому используем тут как массив.
+
+ file {['/mnt/condor', '/mnt/condor/execute', '/mnt/condor/spool']:
   ensure => directory,
   mode   => "0755",
+  owner  => "condor",
+  group  => "condor",
   }
 
 ################################ Задаем конфиг autofs
@@ -39,6 +43,7 @@ file { '/etc/auto.nfs':
   content => "
 /nfs    -fstype=nfs,defaults condor.jinr.ru:/nfs
 /mnt/local_repo -fstype=nfs,defaults condor.jinr.ru:/mnt/vdb
+/nova  -fstype=nfs,rw,vers=4.1 10.93.221.50:/nova
 +auto.nfs
 ",
   mode => "0644",

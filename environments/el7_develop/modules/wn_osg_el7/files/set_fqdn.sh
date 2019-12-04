@@ -17,7 +17,9 @@
 
 #IP=$(echo `/sbin/ip a` | sed -n -e 's/^.*inet \(.*\)\(scope global eth0\).*/\1/p' | cut -d ' ' -f1 | cut -d '/' -f1)
 # Не всегда интерфейс называется eth0, поэтому заменяем название интерфейса на '.*' 26.11.2019
-IP=$(echo `/sbin/ip a` | sed -n -e 's/^.*inet \(.*\)\(scope global .*\).*/\1/p' | cut -d ' ' -f1 | cut -d '/' -f1)
+# 04.12.2019 Однако у всех узлов один и тот же broadcast "brd 10.93.223.255"
+#IP=$(echo `/sbin/ip a` | sed -n -e 's/^.*inet \(.*\)\(scope global .*\).*/\1/p' | cut -d ' ' -f1 | cut -d '/' -f1)
+IP=$(echo `/sbin/ip a` | sed -n -e 's/^.*inet \(.*\)\(brd 10.93.223.255\).*/\1/p' | cut -d ' ' -f1 | cut -d '/' -f1)
 #echo "IP=$IP"
 SUBN=$(echo $IP | cut -d'.' -f3)
 #echo "SUBN=$SUBN"

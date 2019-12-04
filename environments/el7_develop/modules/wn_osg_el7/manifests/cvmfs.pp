@@ -1,19 +1,43 @@
 class wn_osg_el7::cvmfs {
 
+# file {'/mnt/cvmfs':
+#  ensure => directory,
+#  mode   => "0755",
+#  owner => 'cvmfs',
+#  group => 'cvmfs',
+  
+#  }
+
+
+        package {"cvmfs":
+        ensure => present,
+        before => File['/mnt/cvmfs'],
+
+        }
+
+
+
 file { '/var/lib/cvmfs':
   ensure => link,
   target => '/mnt/cvmfs/',
   owner => 'cvmfs',
   group => 'cvmfs',
-
+  force => true,
+  require => Package["cvmfs"],
 }
 
+ file {'/mnt/cvmfs':
+  ensure => directory,
+  mode   => "0755",
+  owner => 'cvmfs',
+  group => 'cvmfs',
+  require => Package["cvmfs"],
+  
+  }
 
-        package {"cvmfs":
-        ensure => present,
-        require => File['/var/lib/cvmfs'],
 
-        }
+
+
 
 ############################## add cvmfs settings
    file { "/etc/cvmfs/default.local":
@@ -28,9 +52,9 @@ file { '/var/lib/cvmfs':
     }
 
     exec { "cvmfs_apply":
-#      command     => "/bin/bash -c cvmfs_config probe && ls /cvmfs/nova.opensciencegrid.org",
+      command     => "/bin/bash -c 'cvmfs_config probe && ls /cvmfs/nova.opensciencegrid.org'",
 #      command => "cvmfs_config probe",
-      command => "ls /cvmfs/nova.opensciencegrid.org",
+#      command => "ls /cvmfs/nova.opensciencegrid.org",
       path    => "/bin/",
     }
 
@@ -46,11 +70,13 @@ $line_1 = "/dev/mapper/wn-cvmfs    /mnt/cvmfs      ext4    defaults        0    
 $line_2 = "/dev/mapper/wn-condor   /mnt/condor     ext4    defaults        0       0"
 $line_3 = "10.93.221.50:/nova	   /nova	   nfs	   rw,vers=4.1	   0	   0"
 
-file_line {"nfs_folders":
-ensure => present,
-path   => '/etc/fstab',
-line   => [$line_1, $line_2, $line_3],
-}
+#file_line {"nfs_folders":
+#ensure => present,
+#path   => '/etc/fstab',
+#line   => [$line_1, $line_2, $line_3],
+#}
+
+
 #match  => '^#\sinclude\s"/usr/share/nano/sh.nanorc"',
 # match will look for a line beginning with "# include /usr/share/nano/sh.nanorc" and replace it with the value in "line"
 #/dev/mapper/wn-cvmfs    /mnt/cvmfs      ext4    defaults        0       0

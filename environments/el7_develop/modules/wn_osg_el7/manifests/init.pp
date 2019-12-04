@@ -15,6 +15,7 @@ file { '/var/lib/condor':
   target => '/mnt/condor/',
   owner => 'condor',
   group => 'condor',
+  force => true,
 
 }
 #############################################3
@@ -47,31 +48,13 @@ nameserver 159.93.14.7
 }
 ############################## add set_fqdn.sh script
 contain wn_osg_el7::set_fqdn
-#   file { "/root/set_fqdn.sh":
-#    ensure => file,
-#    source => 'puppet:///modules/wn_osg_el7/set_fqdn.sh',
-#    mode => "0755",
-#    owner => 'root',
-#    group => 'root',
-
-#    notify => Exec["set_fqdn.sh"],
-#    }
-
-#    exec { "set_fqdn.sh":
-##      command => "./set_fqdn.sh",  # ТАК НЕ РАБОТАЕТ !!!
-##      path    => "/root/",         # ТАК НЕ РАБОТАЕТ !!!
-#    command =>  "/bin/bash -c '/root/set_fqdn.sh'",
-#    refreshonly => true,
-
-#    }
 ##############################
 
 
 
 contain wn_osg_el7::autofs
-contain wn_osg_el7::cvmfs
 contain wn_osg_el7::mount_folder
-#contain wn_osg_el7::set_fqdn
+contain wn_osg_el7::cvmfs
   service { 'ntpdate':
     ensure => running,
     enable => true,

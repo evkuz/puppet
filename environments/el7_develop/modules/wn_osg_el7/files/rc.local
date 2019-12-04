@@ -74,7 +74,7 @@ else
   echo "$(date +"%d-%m-%Y %T") Could NOT execute last command of script set_fqdn.sh" >> $SETUPLOG
 
 fi
-
+sleep 3
 
 # run script
 /root/init_lvm_el7.sh
