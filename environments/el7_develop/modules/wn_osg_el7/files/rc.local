@@ -105,7 +105,7 @@ done
 
 # Проверяем вывод /var/log/messages на предмет соответствия hostname в этом файле и в реале.
 
-CMD_MESSAGES="$(tail --lines=1 /var/log/messages |  cut -d ' ' -f4)"
+CMD_MESSAGES="$(tail --lines=1 /var/log/messages |  cut -d ' ' -f3)"
 
 CMD_SHORT_HOSTNAME="$(hostname -s)"
 

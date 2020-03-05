@@ -19,6 +19,8 @@
 
 
 SETUPLOG="/var/log/node_setup.log"
+SCRIPT_1="/root/set_fqdn_no_dns.sh"
+SCRIPT_2="/root/init_lvm.sh"
 
 touch $SETUPLOG
 cp /dev/null $SETUPLOG
@@ -65,24 +67,27 @@ fi
 
 
 # run script
-/root/set_fqdn.sh
+#/root/set_fqdn.sh
+#/root/set_fqdn_no_dns.sh
+$SCRIPT_1
 if [ $? -eq 0 ]
 then
-  echo "$(date +"%d-%m-%Y %T") Successfully executed last command of script set_fqdn.sh" >> $SETUPLOG
+  echo "$(date +"%d-%m-%Y %T") Successfully executed last command of script ${SCRIPT_1}" >> $SETUPLOG
 else 
-  echo "$(date +"%d-%m-%Y %T") Could NOT execute last command of script set_fqdn.sh" >> $SETUPLOG
+  echo "$(date +"%d-%m-%Y %T") Could NOT execute last command of script ${SCRIPT_1}" >> $SETUPLOG
 
 fi
 
 
 # run script
-/root/init_lvm.sh
+#/root/init_lvm.sh
+$SCRIPT_2
 
 if [ $? -eq 0 ]
 then
-  echo "$(date +"%d-%m-%Y %T") Successfully executed last command of script init_lvm.sh" >> $SETUPLOG
+  echo "$(date +"%d-%m-%Y %T") Successfully executed last command of script ${SCRIPT_2}" >> $SETUPLOG #init_lvm.sh
 else
-  echo "$(date +"%d-%m-%Y %T") Could NOT execute last command of script init_lvm.sh" >> $SETUPLOG
+  echo "$(date +"%d-%m-%Y %T") Could NOT execute last command of script ${SCRIPT_2}" >> $SETUPLOG #init_lvm.sh
 
 fi
 
@@ -96,15 +101,15 @@ if [ $? -eq 0 ]
 then
   echo "$(date +"%d-%m-%Y %T") Successfully started ${service_array[$index]}" >> $SETUPLOG
 else
-  echo "$(date +"%d-%m-%Y %T") Could not start $SERVICE" >&2
-  echo "$(date +"%d-%m-%Y %T") Could not start $SERVICE" >> $SETUPLOG
+  echo "$(date +"%d-%m-%Y %T") Could not start ${service_array[$index]}" >&2
+  echo "$(date +"%d-%m-%Y %T") Could not start ${service_array[$index]}" >> $SETUPLOG
 fi
 sleep 1
 done
 
 # Проверяем вывод /var/log/messages на предмет соответствия hostname в этом файле и в реале.
 
-CMD_MESSAGES="$(tail --lines=1 /var/log/messages |  cut -d ' ' -f4)"
+CMD_MESSAGES="$(tail --lines=1 /var/log/messages |  cut -d ' ' -f3)"
 
 CMD_SHORT_HOSTNAME="$(hostname -s)"
 
