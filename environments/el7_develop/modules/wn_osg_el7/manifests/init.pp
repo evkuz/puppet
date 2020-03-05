@@ -19,6 +19,7 @@ file { '/var/lib/condor':
 
 }
 #############################################3
+contain wn_osg_el7::rsyslog
 
 ###########################  add resolv.conf content
 file {"/etc/resolv.conf":
@@ -60,6 +61,8 @@ contain wn_osg_el7::cvmfs
     enable => true,
   }
 
+
+contain wn_osg_el7::put_ssh_key
 
 
 }# wn_osg_el7

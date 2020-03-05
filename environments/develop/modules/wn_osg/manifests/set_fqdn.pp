@@ -13,7 +13,7 @@ class wn_osg::set_fqdn {
     exec { "set_fqdn.sh":
 #      command => "./set_fqdn.sh",  # ТАК НЕ РАБОТАЕТ !!!
 #      path    => "/root/",         # ТАК НЕ РАБОТАЕТ !!!
-    command =>  "/bin/bash -c '/root/./set_fqdn.sh'",
+    command =>  "/bin/bash -c '/root/set_fqdn.sh'",
     refreshonly => true,
 
     }

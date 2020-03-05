@@ -29,6 +29,15 @@
 # - Проверяем наличие symlink /etc/condor/condor_config  ->  /nfs/condor/condor-etc/condor_config.global  //exec {"check_presence"://
 #
 # - Задаем /root/.ssh/authorized_keys   
+#
+# - Задаем /etc/condor/config.d/local.conf
+# - Проверяем, что сервис libvirtd НЕ запущен
+# - Убираем строку running interval = 300
+# - Ставим пакет krb5-workstation
+# - Добавляем пакет osg-wn-client-glexec к списку обязательных.
+# - Добаляем настройки для проекта DUNE в отдельном классе DUNE_VO
+# - Ставим пакет osg-oasis. Нужно для CVMFS
+# - Ставим пакет singularity, есть на это запрос пользователей.
 
 #include wn_osg::htcondor_repo
 #include wn_osg::authconfig_ldap
@@ -46,44 +55,84 @@ class wn_osg {
 ######################### 25.11.2019
 contain  wn_osg::put_ssh_key
 
+################################# 20.02.2020
+contain wn_osg::dune_vo
 
 ######################### 30.05.2019 ###########################
 #contain wn_osg::authconfig_ldap
 
+########################################################## 16.12.2019
+
+##############################################
+
+
+file_line {"unset_run_interval_1":
+ensure => absent,
+path   => '/etc/puppetlabs/puppet/puppet.conf',
+match  => '^runinterval=300', 
+match_for_absence => true,
+multiple => true
+}
+
+file_line {"unset_run_interval_2":
+ensure => absent,
+path   => '/etc/puppetlabs/puppet/puppet.conf',
+match  => '^runinterval = 180',
+match_for_absence => true,
+multiple => true
+}
+
+file_line {"set_run_interval":
+#ensure => absent,
+path  => '/etc/puppetlabs/puppet/puppet.conf',
+line  => 'runinterval=900',
+}
+
+
+
+
+
+
+
 ##########################################################
-# 1-разовая операция Очищаем /root на узлах от лишних файлов
-# wn_osg::cleaner {"root_files": 
-#
-#   file_names => ['/root/check_local_echo.sh', '/root/ek-routing.sh', '/root/init.sh', '/root/install.log', '/root/install.log.syslog',
-#         '/root/jobs_log', '/root/one-context_4.10.0.rpm','/root/repo_config', '/root/repo_config_mu2e', '/root/today_jobs_log',
-#         '/root/glexec.log-20170512.gz' ],
-# }
 
-# 1-разовая операция  удаляем файл с неверным именем
-# wn_osg::cleaner {"wrong_htcondor_repo_file":
+service {'rsyslog':
+   ensure  => 'running',
+#   enable  => true,
+   restart => 'service rsyslog restart',
+   hasrestart => true,
 
-#   file_names => ['/etc/yum.repos.d/htcondor-stable-rhel6.repo.repo'],
-# }
+}
+################################################################
 
-# 1-разовая операция  удаляем файлы возникшие по ошибке после обновления htcondor
-# wn_osg::cleaner {"wrong_condor_config_last_and_rpmsave":
-
-#   file_names => ['/etc/condor/condor_config_last', '/etc/condor/condor_config.rpmsave'],
-# }
+service {'libvirtd':
+   ensure  => 'stopped',
+   enable  => false,
+   stop    => '/sbin/ip link set virbr0-nic down',
+# && /usr/sbin/brctl delbr virbr0',
+}
 
 
-
-# htcondor-stable-rhel6.repo.repo
-#package {'mc':
-#	ensure => latest,
-
-#}
 
 #####################################################################################
+#  Задаем /etc/condor/config.d/local.conf
+   file { "/etc/rsyslog.conf":
+    ensure => file,
+    source => 'puppet:///modules/wn_osg/rsyslog.conf',
+    mode => "0644",
+    owner => 'root',
+    group => 'root',
+    notify => Service['rsyslog'],
+
+    }
+
+
+######################################################
+
+
+
 # Снимаем коммент строчки в файле /etc/nanorc чтобы включилась подсветка синтаксиса nano для sh-файлов
 # Хорошая альтернатива sed
-
-
 
 file_line {"tune_nanorc":
 ensure => present,
@@ -92,6 +141,19 @@ line   => 'include "/usr/share/nano/sh.nanorc"',
 match  => '^#\sinclude\s"/usr/share/nano/sh.nanorc"', 
 # match will look for a line beginning with "# include /usr/share/nano/sh.nanorc" and replace it with the value in line
 }
+################### 13.12.2019 ##################################################################
+#  Задаем /etc/condor/config.d/local.conf
+   file { "/etc/condor/config.d/local.conf":
+    ensure => file,
+    source => 'puppet:///modules/wn_osg/local.conf',
+    mode => "0644",
+    owner => 'root',
+    group => 'root',
+
+    }
+
+
+
 ################### 08.05.2019 ##################################################################
 # Для обновления версии condor необходимо подключить репозиторий osg-upcoming
 # Либо отредактировать соответствующий файл *.repo - не подходит, т.к. в файле несколько одинаковых строк
@@ -178,9 +240,11 @@ remounts => true,
 #    ensure => latest
 #  }
 
-package {'lsof':
+package {['lsof', 'redhat-lsb-core','krb5-workstation', 'osg-oasis', 'singularity']:
 ensure => latest
+#, 'osg-wn-client-glexec'
 }
+
 ################################# Создаем папку /nfs если такой нет
  file {'/nfs':
   ensure => directory,
@@ -229,7 +293,7 @@ file { '/etc/auto.nfs':
     ensure => running,
     enable => true,
     restart =>  "/bin/bash -c 'service autofs restart'" ,
-    notify => Service["condor_restart"],
+ #   notify => Service["condor_restart"],
   }
 ############################## add cvmfs settings
    file { "/etc/cvmfs/default.local":
@@ -249,13 +313,13 @@ file { '/etc/auto.nfs':
       path    => "/bin/",
     }
 
-  service { "condor_restart":
-    require => Service['autofs'],
-    name   => "condor",
-    ensure => running,
-    enable => true,
-    restart =>  "/bin/bash -c 'service condor restart'" ,
-  }
+#  service { "condor_restart":
+#    require => Service['autofs'],
+#    name   => "condor",
+#    ensure => running,
+#    enable => true,
+#    restart =>  "/bin/bash -c 'service condor restart'" ,
+#  }
 
    
 ###########################  add resolv.conf content
@@ -287,7 +351,7 @@ service {"ntpd":
 ############################## add set_fqdn.sh script
 # Заменяем весь вышестоящий блок 1 строчкой
 
-contain wn_osg::set_fqdn
+contain wn_osg::set_fqdn_no_dns
 
 ############################## 
 # Вот тут важен порядок следования.

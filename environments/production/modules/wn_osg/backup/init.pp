@@ -34,10 +34,6 @@
 # - Проверяем, что сервис libvirtd НЕ запущен
 # - Убираем строку running interval = 300
 # - Ставим пакет krb5-workstation
-# - Добавляем пакет osg-wn-client-glexec к списку обязательных.
-# - Добаляем настройки для проекта DUNE в отдельном классе DUNE_VO
-# - Ставим пакет osg-oasis. Нужно для CVMFS
-# - Ставим пакет singularity, есть на это запрос пользователей.
 
 #include wn_osg::htcondor_repo
 #include wn_osg::authconfig_ldap
@@ -55,8 +51,6 @@ class wn_osg {
 ######################### 25.11.2019
 contain  wn_osg::put_ssh_key
 
-################################# 20.02.2020
-contain wn_osg::dune_vo
 
 ######################### 30.05.2019 ###########################
 #contain wn_osg::authconfig_ldap
@@ -66,7 +60,7 @@ contain wn_osg::dune_vo
 ##############################################
 
 
-file_line {"unset_run_interval_1":
+file_line {"set_run_interval":
 ensure => absent,
 path   => '/etc/puppetlabs/puppet/puppet.conf',
 match  => '^runinterval=300', 
@@ -74,65 +68,28 @@ match_for_absence => true,
 multiple => true
 }
 
-file_line {"unset_run_interval_2":
-ensure => absent,
-path   => '/etc/puppetlabs/puppet/puppet.conf',
-match  => '^runinterval = 180',
-match_for_absence => true,
-multiple => true
+################ replace line  it works !!! ###################
+file_line {'replace_line_rsyslog':
+#   ensure            => absent,
+   path     => '/etc/rsyslog.conf',
+   match     => '^\$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat',
+   replace  => true,
+   line     => '$ActionFileDefaultTemplate EKtemplate',
 }
 
-file_line {"set_run_interval":
-#ensure => absent,
-path  => '/etc/puppetlabs/puppet/puppet.conf',
-line  => 'runinterval=900',
-}
-
-
-
-
-
-
-
-##########################################################
-
-service {'rsyslog':
-   ensure  => 'running',
-#   enable  => true,
-   restart => 'service rsyslog restart',
-   hasrestart => true,
+file_line {"/etc/rsyslog.conf":
+   ensure   => 'present',
+   path     => '/etc/rsyslog.conf',
+   after    => '# Use default timestamp format',
+   line     => '$template EKtemplate,"%$day%-%$month%-%$year% %timegenerated:12:19:date-rfc3339% %HOSTNAME% %syslogseverity-text:0:3:uppercase% %msg%\n" ',
 
 }
-################################################################
-
-service {'libvirtd':
-   ensure  => 'stopped',
-   enable  => false,
-   stop    => '/sbin/ip link set virbr0-nic down',
-# && /usr/sbin/brctl delbr virbr0',
-}
-
-
 
 #####################################################################################
-#  Задаем /etc/condor/config.d/local.conf
-   file { "/etc/rsyslog.conf":
-    ensure => file,
-    source => 'puppet:///modules/wn_osg/rsyslog.conf',
-    mode => "0644",
-    owner => 'root',
-    group => 'root',
-    notify => Service['rsyslog'],
-
-    }
-
-
-######################################################
-
-
-
 # Снимаем коммент строчки в файле /etc/nanorc чтобы включилась подсветка синтаксиса nano для sh-файлов
 # Хорошая альтернатива sed
+
+
 
 file_line {"tune_nanorc":
 ensure => present,
@@ -240,9 +197,8 @@ remounts => true,
 #    ensure => latest
 #  }
 
-package {['lsof', 'redhat-lsb-core','krb5-workstation', 'osg-oasis', 'singularity']:
+package {['lsof', 'redhat-lsb-core','krb5-workstation']:
 ensure => latest
-#, 'osg-wn-client-glexec'
 }
 
 ################################# Создаем папку /nfs если такой нет
@@ -351,7 +307,7 @@ service {"ntpd":
 ############################## add set_fqdn.sh script
 # Заменяем весь вышестоящий блок 1 строчкой
 
-contain wn_osg::set_fqdn_no_dns
+#contain wn_osg::set_fqdn_no_dns
 
 ############################## 
 # Вот тут важен порядок следования.

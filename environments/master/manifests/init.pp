@@ -1,3 +1,5 @@
+include yum_update
+
 class master {
 package {'lsof':
 ensure => latest,
