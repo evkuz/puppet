@@ -9,6 +9,10 @@ Static config files or config file templates would typically be part of that.
 
 Репозиторий для конфигурации puppet + foreman
 
+
+30.03.2020
+Save to github
+
 Отработаны следующие возможности: 
 - Текстовый файл существует и имеет заданное содрежимое. Задействован ресурс file, content => "..." 
 - Директория существует. Ресурс file {ensure => directory} 
