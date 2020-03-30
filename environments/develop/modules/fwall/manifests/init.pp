@@ -13,8 +13,10 @@
 
 
 class fwall (
- $script_path = undef,
- $script_name = undef,
+#$script_path = undefined,
+#$script_name = undefined,
+$script_path = "/etc/sysconfig",
+$script_name = "iptables-wn.sh",
 ) {  
 
    package { 'iptables':
@@ -30,6 +32,8 @@ class fwall (
 
    }
 
+
+# Вот тут файл iptables-wn-osg.sh преобразуется в iptables-wn.sh
 
    file { "${script_path}/${script_name}":
 	
@@ -53,7 +57,7 @@ class fwall (
 
 
     exec {"iptables_save":
-      notify => Service['iptables'], # Все так, но сервис берет за основу конфиг /etc/sysconfig/iptables ... а мы-то следим за содержимым скрипта iptables-wn-osg.sh
+#      notify => Service['iptables'], # Все так, но сервис берет за основу конфиг /etc/sysconfig/iptables ... а мы-то следим за содержимым скрипта iptables-wn-osg.sh
       command   => "iptables-save > /etc/sysconfig/iptables",
       path      => "/sbin",
       refreshonly => true,
@@ -61,4 +65,4 @@ class fwall (
     }
 
 
-}
+} #class fwall

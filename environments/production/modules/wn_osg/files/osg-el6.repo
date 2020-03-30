@@ -1,6 +1,7 @@
 [osg]
 name=OSG Software for Enterprise Linux 6 - $basearch
-baseurl=file:/mnt/local_repo/osg/3.4/el6/release/$basearch
+baseurl=https://repo.opensciencegrid.org/osg/3.4/el6/release/$basearch
+#file:/mnt/local_repo/osg/3.4/el6/release/$basearch
 #https://repo.opensciencegrid.org/osg/3.4/el6/release/$basearch
 #mirrorlist=https://repo.opensciencegrid.org/mirror/osg/3.4/el6/release/$basearch
 failovermethod=priority

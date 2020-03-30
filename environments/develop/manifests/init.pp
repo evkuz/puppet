@@ -6,6 +6,8 @@ include yum_update
 #include iface_down
 include network
 
+include fwall
+#include fwall_defined
 
 #Задаем параметры сетевого интерфейса eth0 для файла /etc/sysconfig/network-scripts/ifcfg-eth0
 #После модуль network сам делает  service newtork restart
@@ -34,11 +36,12 @@ ensure => absent,
 }
 
 
-class {"fwall":
+# А модуль какой ???
+#class {"fwall":
 
-script_path => "/etc/sysconfig",
-script_name => "iptables-wn.sh",
-}
+#script_path => "/etc/sysconfig",
+#script_name => "iptables-wn.sh",
+#}
 
 ###########  Это для тестов 
 #check_file::destination_file {'/home/anaconda-ks.cfg':

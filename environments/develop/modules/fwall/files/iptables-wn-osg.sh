@@ -40,8 +40,8 @@ iptables -t mangle -A POSTROUTING -j ACCEPT
 #Table filter
 
 
-iptables -t filter -A INPUT -p tcp -m tcp --dport 22 -m comment --comment "Allow SSH" -j ACCEPT
-iptables -t filter -A INPUT -s $NET_JINR -m comment --comment "Let all from JINR" -j ACCEPT
+iptables -t filter -A INPUT -p tcp -m tcp --dport 22 -m comment --comment "Allow SSH for ALL" -j ACCEPT
+iptables -t filter -A INPUT -s $NET_JINR -m comment --comment "Let ALL from JINR network" -j ACCEPT
 iptables -t filter -A INPUT -s $NET_221  -m comment --comment "Allow local 10.93.221.xxx cluster, though it's already fine" -j ACCEPT
 
 #+++++++++++++++++++++++ GRID special rules ++++++++++++++++++++++++++++++++++++++++++++++++++++

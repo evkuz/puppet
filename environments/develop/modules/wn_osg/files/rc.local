@@ -122,7 +122,8 @@ else
     echo "$(date +"%d-%m-%Y %T") make init6 via VNC console" >> $SETUPLOG
 fi
 
-
+# Запускаем iptables
+/etc/sysconfig/iptables-wn.sh
 
 
 #/root/set_fqdn.sh

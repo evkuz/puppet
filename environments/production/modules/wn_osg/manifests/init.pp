@@ -38,6 +38,7 @@
 # - Добаляем настройки для проекта DUNE в отдельном классе DUNE_VO
 # - Ставим пакет osg-oasis. Нужно для CVMFS
 # - Ставим пакет singularity, есть на это запрос пользователей.
+# - Проверяем ОТСУТСТВИЕ пакета telnet
 
 #include wn_osg::htcondor_repo
 #include wn_osg::authconfig_ldap
@@ -82,11 +83,25 @@ match_for_absence => true,
 multiple => true
 }
 
-file_line {"set_run_interval":
-#ensure => absent,
+file_line {"set_run_interval_3":
+ensure => absent,
 path  => '/etc/puppetlabs/puppet/puppet.conf',
 line  => 'runinterval=900',
 }
+
+file_line {"set_run_interval_4":
+ensure => absent,
+path  => '/etc/puppetlabs/puppet/puppet.conf',
+line  => 'runinterval=600',
+}
+
+#ensure => absent,
+file_line {"set_run_interval":
+#ensure => absent,
+path  => '/etc/puppetlabs/puppet/puppet.conf',
+line  => 'runinterval=1800',
+}
+
 
 
 
@@ -243,6 +258,12 @@ remounts => true,
 package {['lsof', 'redhat-lsb-core','krb5-workstation', 'osg-oasis', 'singularity']:
 ensure => latest
 #, 'osg-wn-client-glexec'
+}
+
+package {'telnet':
+ensure => absent
+
+
 }
 
 ################################# Создаем папку /nfs если такой нет

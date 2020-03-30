@@ -1,6 +1,6 @@
 class wn_osg_el7 {
 
-	package {['mc', 'tree']:
+	package {['mc', 'tree', 'nmap-ncat']:
         	  ensure => present,
         }
 	
@@ -48,7 +48,8 @@ nameserver 159.93.14.7
     group => 'root',
 }
 ############################## add set_fqdn.sh script
-contain wn_osg_el7::set_fqdn
+#contain wn_osg_el7::set_fqdn
+contain wn_osg_el7::set_fqdn_no_dns
 ##############################
 
 

@@ -66,7 +66,7 @@ fi
 
 
 # run script
-/root/set_fqdn.sh
+/root/set_fqdn_no_dns.sh
 if [ $? -eq 0 ]
 then
   echo "$(date +"%d-%m-%Y %T") Successfully executed last command of script set_fqdn.sh" >> $SETUPLOG

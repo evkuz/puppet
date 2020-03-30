@@ -19,7 +19,7 @@ schedule { 'osg_update':
 
     schedule => 'osg_update',
     ensure => file,
-    source => 'puppet:///modules/master/update_osg.sh',
+    source => 'puppet:///modules/main/update_osg.sh',
     mode => "0755",
     owner => 'root',
     group => 'root',
