@@ -14,9 +14,9 @@ class wn_osg_el7::autofs {
   ensure => directory,
   mode   => "0755",
   }
-################################# Создаем папку /mnt/condor , /mnt/cvmfs для монтирования туда nfs-папок 
+################################# Проверяем наличие папок /mnt/condor/spool , /mnt/condor/execute, необходимых для condor 
 # Владельцы этих папок прописываются в скрипте /root/init_lvm.sh, поэтому используем тут как массив.
-
+# Закомментировано chown -R cvmfs:cvmfs /mnt/cvmfs
  file {['/mnt/condor', '/mnt/condor/execute', '/mnt/condor/spool']:
   ensure => directory,
   mode   => "0755",

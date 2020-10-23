@@ -21,8 +21,8 @@ include fwall
 network::interface {'eth0':
  ipaddress => $ipaddress,
  netmask   => $netmask,
- gateway   => '10.93.220.1',
-
+# gateway   => '10.93.220.1',
+  gateway   => '10.220.16.1',
 }
 
 network::interface {'virbr0':

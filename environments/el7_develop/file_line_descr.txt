@@ -1,0 +1,501 @@
+[mNotice: Searching https://forgeapi.puppet.com ...[0m
+NAME                                             DESCRIPTION                                                   AUTHOR                 KEYWORDS                      
+ghoneycutt-types                                 Puppet module to manage default types through hashes in H...  @ghoneycutt            types nfs mount               
+geoffwilliams-stdlib[0;31m DEPRECATED[0m                  Standard library of resources for Puppet modules.             @geoffwilliams                                       
+puppetlabs-azure                                 Create and manage machines running on Microsoft Azure wit...  @puppetlabs            azure linux windows cloud     
+puppetlabs-amazon_aws                            AWS module for management of Amazon Web Services (AWS) re...  @puppetlabs                                          
+openstack-horizon                                Puppet module for OpenStack Horizon                           @openstack                                           
+puppetlabs-docker                                Module for installing and managing docker                     @puppetlabs                                          
+puppetlabs-inifile                               Resource types for managing settings in INI files             @puppetlabs            inifile ini settings file     
+puppetlabs-concat                                Construct files from multiple fragments.                      @puppetlabs            concat files fragments        
+puppetlabs-firewall                              Manages Firewalls such as iptables                            @puppetlabs            redhat centos debian ubuntu   
+puppetlabs-chocolatey                            Chocolatey package provider for Puppet                        @puppetlabs            microsoft net dot-net package 
+puppetlabs-postgresql                            Offers support for basic management of PostgreSQL databases.  @puppetlabs            centos rhel ubuntu pgsql      
+puppetlabs-mysql                                 Installs, configures, and manages the MySQL service.          @puppetlabs            mysql centos rhel ubuntu      
+puppetlabs-puppet_conf                           Tasks that manipulates a puppet configuration file            @puppetlabs                                          
+pcfens-filebeat                                  A module to install and manage the filebeat log shipper       @pcfens                filebeat logstash elastic     
+puppetlabs-tagmail                               This module provides a report processor that sends events...  @puppetlabs                                          
+puppet-mcollective                               Installs, configures, and manages MCollective agents, cli...  @puppet                voxpupuli mcollective         
+puppet-selinux                                   This class manages SELinux on RHEL based systems              @puppet                                              
+astoyanov-coretx                                 A collection of parameterized classes for common resource...  @astoyanov                                           
+justinhennessy-sdiff                             Provides suppressing diff output based on file and line r...  @justinhennessy        diff suppress encryption eyaml
+puppet-grafana                                   This module provides Grafana, a dashboard and graph edito...  @puppet                grafana graphite influxdb     
+puppet-gitlab                                    Installation and configuration of Gitlab Omnibus              @puppet                git gitlab                    
+leoarnold-cups                                   Puppet module for the Common Unix Printing System (CUPS)      @leoarnold             cups printer printing         
+puppetlabs-dsc_lite                              PowerShell Desired State Configuration (DSC) Lite             @puppetlabs            powershell dsc                
+elastic-kibana                                   Module for installing, configuring, and managing Kibana.      @elastic                                             
+puppet-logrotate                                 Manage logrotate                                              @puppet                logrotate                     
+puppet-hiera                                     Deploy hiera.yaml with hierarchy, and datadir                 @puppet                                              
+puppetlabs-facter_task                           Tasks that inspect the value of system facts                  @puppetlabs                                          
+ghoneycutt-ssh                                   Manages SSH                                                   @ghoneycutt            ssh sshd openssh sshkey       
+herculesteam-augeasproviders_grub                Augeas-based grub types and providers for Puppet              @herculesteam          augeas utilities types grub   
+puppet-yum                                       YUM utilities                                                 @puppet                yum package rpm voxpupuli     
+puppet-collectd                                  Puppet module for Collectd                                    @puppet                graphite collectd statistics  
+geoffwilliams-comment_line                       Comment out a line a file using Puppet                        @geoffwilliams                                       
+ghoneycutt-nfs                                   Manage NFS                                                    @ghoneycutt            nfs rpcbind idmap             
+example42-tp                                     Tiny Puppet                                                   @example42                                           
+hardening-os_hardening                           Configures the base OS with hardening                         @hardening             hardening os-base             
+puppet-splunk                                    Manage and deploy Splunk servers and forwarders               @puppet                                              
+jonnyx-logwatch                                  Manage Logwatch on Linux Servers                              @jonnyx                                              
+chocolatey-chocolatey                            The Chocolatey package provider for Puppet                    @chocolatey            microsoft net dot-net package 
+puppetlabs-support_tasks                         A module used to deliver Tasks for the solutions & config...  @puppetlabs                                          
+puppet-rsyslog                                   Manage rsyslog v8 configuration                               @puppet                                              
+richardc-datacat                                 Puppet type for handling data fragments                       @richardc              concat file data merge        
+camptocamp-postfix                               Camptocamp Postfix Module                                     @camptocamp            mta smtp debian redhat ubuntu 
+echoes-wrappers                                  Puppet module to wrap some defined resource types that do...  @echoes                foreman enc                   
+stackforge-horizon                               Puppet module for OpenStack Horizon                           @stackforge                                          
+waveclaw-subscription_manager                    Manage Katello or Satellite registrations.                    @waveclaw              redhat katello satellite rhsm 
+ghoneycutt-facter                                Manage Facter                                                 @ghoneycutt            puppet facter                 
+razorsedge-snmp[0;31m DEPRECATED[0m                       Simple Network Management Protocol is for monitoring netw...  @razorsedge            snmp monitoring net-snmp      
+soli-wrappers                                    Puppet module to wrap some defined resource types that do...  @soli                  foreman enc                   
+ambu50-hosts_list                                Generates a file contains a hosts list using Puppet expor...  @ambu50                hosts list group pdsh         
+puppet-firewalld                                 Configure firewalld zones, services, and rich rules and d...  @puppet                firewall rhel security        
+puppet-prometheus_reporter                       This module writes Puppet reports in a format suitable fo...  @puppet                                              
+dwerder-graphite                                 Installs and configures graphite, carbon (caches,relays,a...  @dwerder               carbon ubuntu debian rhel     
+puppetlabs-pe_bulk_agent_install                 A tool for installing Puppet agents across multiple platf...  @puppetlabs                                          
+stackforge-neutron                               Puppet module for OpenStack Neutron                           @stackforge                                          
+puppetlabs-catalog_preview                       Module providing catalog preview and migration features       @puppetlabs            preview catalog diff delta    
+ssm-munin                                        Configure munin master, node and plugins                      @ssm                   munin graphing trending       
+maestrodev-rvm                                   A puppet module for installing and using RVM (Ruby Versio...  @maestrodev            ruby rvm                      
+simp-postgresql                                  PostgreSQL defined resource types                             @simp                                                
+juniorsysadmin-irqbalance                        Puppet module for installing and managing irqbalance          @juniorsysadmin        irqbalance irq                
+kemra102-cloudwatchlogs                          Configure AWS Cloudwatch Logs on Amazon Linux, Ubuntu, Re...  @kemra102              aws cloud watch logs amazon   
+praekeltfoundation-marathon                      Module that manages the Marathon framework for Mesos          @praekeltfoundation                                  
+kemra102-auditd                                  Manage the audit daemon and it's rules.                       @kemra102              audit auditd logging logs     
+deric-mesos                                      Module managing Mesos master and slave instalation            @deric                 mesos cluster                 
+saz-limits                                       Manage user limits via puppet                                 @saz                   debian ubuntu groups user pam 
+maestrodev-maven                                 Apache Maven module for Puppet                                @maestrodev            maven apache                  
+stackstorm-st2                                   Puppet module to manage/configure StackStorm                  @stackstorm                                          
+puppet-letsencrypt                               Manages lets-encrypt and certbot + related certs              @puppet                letsencrypt certbot acme      
+crayfishx-firewalld[0;31m DEPRECATED[0m                   Configure firewalld zones, services, and rich rules and d...  @crayfishx             firewall rhel security        
+bfraser-grafana[0;31m DEPRECATED[0m                       This module provides Grafana, a dashboard and graph edito...  @bfraser               grafana graphite influxdb     
+garethr-docker[0;31m DEPRECATED[0m                        Module for installing and managing docker                     @garethr               ubuntu lxc redhat centos      
+thbe-ssmtp                                       sSMTP management module                                       @thbe                  rhel redhat ssmtp mail        
+dalen-puppetdbquery                              Query functions for the PuppetDB API                          @dalen                 function puppetdb query       
+puppetlabs-rsync                                 Manages rsync clients, repositories, and servers, & provi...  @puppetlabs            rsync                         
+adrien-filemapper                                Puppet provider file manipulation extension                   @adrien                developer extension puppetx   
+aboe-chrony                                      Manage chrony daemon on Linux                                 @aboe                                                
+saz-vim                                          Manage VIM via puppet.                                        @saz                   debian ubuntu vim editor      
+thewired-bitbucket                               Install Atlassian Bitbucket Server                            @thewired                                            
+golja-influxdb                                   Manage InfluxDB version 1.0.0+. For previous supported ve...  @golja                 influxdb metrics              
+zleslie-unbound                                  Puppet Unbound management module                              @zleslie               dns unbound                   
+sfu-managedmac                                   Comprehensive OS X Configuration and Management               @sfu                   apple darwin osx mac plist    
+nwolfe-image_build                               Build Docker and ACI images using Puppet code                 @nwolfe                                              
+rodjek-logrotate[0;31m DEPRECATED[0m                      Logrotate module                                              @rodjek                debian ubuntu linux centos    
+puppetlabs-certregen                             Puppet module providing the certregen face for regenerati...  @puppetlabs                                          
+eyp-systemd                                      management of systemd services, services dropins, sockets...  @eyp                                                 
+geoffwilliams-azure                              Create and manage machines running on Microsoft Azure wit...  @geoffwilliams                                       
+coi-jboss                                        Installs JBoss EAP and WildFly application servers and ma...  @coi                                                 
+jgazeley-freeradius                              Install and configure FreeRADIUS                              @jgazeley                                            
+dsestero-jboss                                   Manage installation and set up of JBoss 4, 5, 7, and Wild...  @dsestero              java jboss jee wildfly        
+felixcarmona-test                                Puppet module for HAProxy                                     @felixcarmona                                        
+puppet-squid                                     configure squid caching proxy                                 @puppet                squid cache http web          
+puppetlabs-puppetserver_gem                      Puppet Labs Puppetserver Gem Module                           @puppetlabs                                          
+LeLutin-fail2ban                                 Manage fail2ban bruteforce protector                          @LeLutin               fail2ban iptables firewall    
+jvaubourg-nginxpack                              Nginx & PHP5 (opt.), vhosts, proxies, redirections, IPv6,...  @jvaubourg             nginx php vhost ipv6 ssl fpm  
+arnoudj-sudo                                     Manage sudoers                                                @arnoudj               sudo security                 
+puppetlabs-netscaler                             Enables Puppet configuration of Citrix NetScaler devices ...  @puppetlabs            netscaler network loadbalancer
+choria-mcollective_util_actionpolicy             Choria Action Policy authorization plugin                     @choria                                              
+walkamongus-centrify                             Puppet module to manage Centrify Express                      @walkamongus           centrify                      
+cprice404-inifile                                Resource types for managing settings in INI files             @cprice404             files settings ini            
+puppet-filemapper                                Developer extension for permitting complex manipulation o...  @puppet                                              
+zack-exports                                     Query all nodes puppetdb exports                              @zack                  puppetdb exports pe api face  
+previousnext-drush                               This module installs Drush, a command line utility for Dr...  @previousnext          composer php drush            
+puppetlabs-ibm_installation_manager              Manages IBM Installation Manager and IBM packages             @puppetlabs            ibm websphere was imcl iim    
+puppetlabs-windows                               Collection of Puppet modules for managing Microsoft Windows.  @puppetlabs                                          
+stm-insserv_override                             Manage override files for LSB init.d boot dependencies.       @stm                   initd boot                    
+petems-hiera_vault                               Hiera 5 backend to query data lookups from vault              @petems                                              
+edestecd-clamav                                  Puppet Module for managing ClamAV                             @edestecd              clam clamd clamav virus       
+aco-tomcat                                       Puppet module for Tomcat                                      @aco                   tomcat java apache            
+thias-php                                        PHP module                                                    @thias                 apache php fastcgi fpm httpd  
+nrvale0-postfix                                  Simple module to manage Postfix mail server                   @nrvale0               debian centos ubuntu mta      
+hajee-connect                                    A replacement for YAML in hiera                               @hajee                                               
+WhatsARanjit-vim                                 Managed vim with Puppet                                       @WhatsARanjit          vim                           
+ericsson-cron                                    Manage cron                                                   @ericsson                                            
+abstractit-sudo                                  secure extensible sudo setup for puppet                       @abstractit            sudo                          
+arusso-stunnel                                   stunnel management                                            @arusso                stunnel tunnel tls ssl        
+puppetlabs-aws                                   This module provides the ability to manage AWS resources      @puppetlabs                                          
+deric-accounts                                   Module for managing user accounts and groups and SSH keys.    @deric                 user group ssh keys hiera     
+ULHPC-kernel                                     Configure various aspects of Linux kernel (modules etc.)      @ULHPC                 os linux kernel modprobe      
+bstopp-aem                                       Install and configure Adobe Experience Manager instances.     @bstopp                aem cq                        
+kakwa-samba                                      Module managing Samba, including Samba as a AD Domain Con...  @kakwa                 samba cifs smb domain dc ad   
+thias-nagios                                     Nagios client and server module.                              @thias                 nagios monitoring nrpe        
+reidmv-puppet_environment_facts                  Custom facts to return puppet environment information         @reidmv                canary classifier cli         
+stahnma-puppetlabs_yum                           Setup the Puppet Labs Yum package repo                        @stahnma               rhel yum fedora yumrepo centos
+puppet-cassandra                                 Installs Cassandra & DataStax Agent on RHEL/Ubuntu/Debian.    @puppet                apache cluster database nosql 
+jhoblitt-smartd                                  Manages the smartmontools package including the smartd da...  @jhoblitt              smart smartd centos rhel lsi  
+genebean-winbind                                 A Puppet module for configuring Winbind on a Linux host       @genebean              winbind smb                   
+ryanuber-packagelist                             Package List                                                  @ryanuber              os rhel strict purge rpm      
+pltraining-userprefs                             Simple user userprefs management                              @pltraining            training puppetlabs           
+choria-mcollective_agent_puppet                  Manages the Life Cycle of the Puppet Agent                    @choria                                              
+mklauber-aide                                    A puppet module for installing and configuring aide           @mklauber              aide                          
+camptocamp-augeas_file                           Puppet Augeas_file module                                     @camptocamp                                          
+thias-rhel                                       Configure Red Hat Enterprise Linux specific files and ser...  @thias                 firewall iptables epel yum rpm
+puppetlabs-image_build                           Build Docker and ACI images using Puppet code                 @puppetlabs                                          
+Nextdoor-strongswan                              Nextdoor strongSwan Management Module                         @Nextdoor              swan vpc tunnel openswan vpn  
+ULHPC-rclocal                                    Configure the rc.local file                                   @ULHPC                 rclocal                       
+themeier-rsync                                   Manages rsync clients, repositories, and servers, & provi...  @themeier              rsync rsyncd                  
+ghoneycutt-rsyslog                               Manage rsyslog                                                @ghoneycutt            logging rsyslog syslog        
+hetzner-filebeats                                Simple module to install and configure filebeats for elas...  @hetzner                                             
+wcooley-cimlog_report                            Report processor to log in Splunk CIM style                   @wcooley               splunk report cim cimlog      
+ghoneycutt-ntp                                   Manage NTP                                                    @ghoneycutt            ntp time services sync        
+landcareresearch-ckan                            Puppet module for deploying CKAN                              @landcareresearch                                    
+opentable-homes                                  A nodule for managing local users and ssh keys                @opentable             ssh                           
+WhatsARanjit-data_fragments                      Construct data files from multiple fragments.                 @WhatsARanjit                                        
+danzilio-letsencrypt                             This module has been moved to voxpupuli/letsencrypt           @danzilio              letsencrypt                   
+puppetlabs-exec                                  Tasks that allows the execution of a command and parameters   @puppetlabs                                          
+codingfuture-cffirehol                           Firewall provider for cfnetwork based on FireHOL generator    @codingfuture                                        
+codingfuture-cfdb                                Universal multi-instance multi-type database setup tool w...  @codingfuture          mysql db backup repmgr redis  
+codingfuture-cfsystem                            Configure a bare minimal production system regardless of ...  @codingfuture                                        
+genebean-zabbixagent                             This module manages the Zabbix Agent on Windows or Linux.     @genebean              zabbix monitoring             
+dsestero-sonarqube                               Installs the sonarqube system                                 @dsestero              sonarqube                     
+maxlareo-docker_compose                          This module install, set and manage Docker Compose            @maxlareo              docker compose containers     
+CERNOps-cvmfs                                    Manages CVMFS clients and servers                             @CERNOps               cvmfs                         
+crayfishx-jerakia                                Puppet module to set up Jerakia                               @crayfishx             jerakia hiera backend         
+puppet-openvpn                                   OpenVPN server puppet module                                  @puppet                vpn openvpn                   
+puppetlabs-package_updates                       A module for monitoring and applying package updates          @puppetlabs            patch updates packages        
+hackerhorse-puppet_deluge                        Deluged on FreeBSD and Linux                                  @hackerhorse                                         
+nexcess-ksplice                                  Install and configure ksplice for Centos, RHEL, Debian, a...  @nexcess               kernel ksplice                
+zleslie-pkgng                                    PkgNG package provider for FreeBSD                            @zleslie               freebsd pkgng                 
+f5-f5                                            Manages F5 BIG-IP Application Delivery Controllers            @f5                    f5 bigip network adc ltm      
+puppetlabs-splunk[0;31m DEPRECATED[0m                     Manage and deploy Splunk servers and forwarders               @puppetlabs            splunk                        
+puppetlabs-bootstrap                             Tasks that bootstrap/install Puppet Enterprise agents on ...  @puppetlabs            puppet agent install          
+ihrwein-syslog_ng                                A module for generating syslog-ng configuration files.        @ihrwein               syslogd syslog-ng log         
+jriviere-windows_ad                              Puppet module to install and configure a Windows DC (2012...  @jriviere              ad 2012 r2 dc users ou unit   
+kb-discus                                        Installs and configures discus.                               @kb                    discus disk space hdd         
+justinclayton-resolv                             Configures resolv.conf                                        @justinclayton                                       
+zack-catalog_diff                                Compares two catalogs and shows the differences               @zack                  rhel pe upgrades face rest    
+binford2k-node_encrypt                           Encrypts secrets in the catalog using the agent's certifi...  @binford2k                                           
+albatrossflavour-os_patching                     Perform OS level patching through tasks and report on pat...  @albatrossflavour                                    
+erwbgy-tomcat                                    Run Tomcat instances under Runit                              @erwbgy                runit applications tomcat     
+jhoblitt-pureftpd                                Manages the pure-ftpd package with comprehensive configur...  @jhoblitt              ftp redhat rhel ldap mysql    
+ghoneycutt-puppet                                Manages Puppet agent and puppetserver                         @ghoneycutt            puppet puppetmaster dashboard 
+thias-dhcpd                                      Install, enable and configure a Dynamic Host Control Prot...  @thias                 dhcp dhcpd                    
+geoffwilliams-name_service_switch                Manage the name service switch - nsswitch.conf on linux a...  @geoffwilliams                                       
+rharrison-lokkit                                 Use lokkit to manage the iptables firewall.  More conveni...  @rharrison             rhel fedora lokkit centos     
+simp-svckill                                     Disables all services that are not controlled by Puppet.      @simp                  simp svckill                  
+nightfly-ssh_keys                                Puppet module for SSH Authorized_keys Management              @nightfly              ssh authorized-keys           
+jcline-pulp                                      This module can be used to install and configure Pulp ser...  @jcline                                              
+paulbadcock-splunkuf                             Splunk Universal Forwarder Install                            @paulbadcock           splunk universalforwarder     
+codingfuture-cfauth                              Configures system access security (users, public keys, SS...  @codingfuture                                        
+stschulte-nimsoft                                Manage nimsoft monitoring resources through puppet            @stschulte             nimsoft nimbus uim            
+justinclayton-sudo                               A very flexible and well-tested puppet module for sudo        @justinclayton         sudo sudoers                  
+stjeanp-mail_aliases                             Manages email aliases on Linux based systems via hiera data   @stjeanp               aliases                       
+schlitzered-redis                                Manage Redis Sentinel, as well as multiple Redis Instances    @schlitzered                                         
+greatboy-bs_backup                               A puppet module which manage file backup, most useful whe...  @greatboy                                            
+puppetlabs-gce_compute[0;31m DEPRECATED[0m                Native types for managing Google Cloud Platform infrastru...  @puppetlabs            device compute google gce     
+simp-sssd                                        Manages SSSD                                                  @simp                  simp sssd                     
+mighq-ipset                                      Linux ipsets management.                                      @mighq                 ipset linux firewall iptables 
+simp-ssh                                         Manage ssh                                                    @simp                  simp ssh cipher               
+arusso-iptables                                  iptables management                                           @arusso                iptables security firewall    
+binford2k-itemize                                Count the number of types, classes, functions used in Pup...  @binford2k                                           
+it2ndq-barman                                    Barman (Backup and Recovery Manager for PostgreSQL) module    @it2ndq                barman disaster backup        
+wyrie-spamassassin                               Spamassassin Module                                           @wyrie                 spamassassin                  
+Aethylred-shibboleth                             A module for installing and managing shibboleth               @Aethylred             shibboleth                    
+geoffwilliams-r_profile                          Ready to use Puppet Profile classes                           @geoffwilliams                                       
+simp-iptables                                    Safely manages IPTables firewall rules                        @simp                  simp iptables firewall        
+southalc-basic                                   Manage many resource types with hiera hashes                  @southalc                                            
+natemccurdy-pe_install_ps1                       Creates a pe_install.ps1 script to automate puppet-agent ...  @natemccurdy                                         
+midonet-neutron                                  Puppet module for OpenStack Neutron with Midonet              @midonet                                             
+mosen-cups                                       CUPS Printing System Installation and Queue Management        @mosen                 cups printer                  
+Aethylred-keymaster                              A module for installing and managing keymaster                @Aethylred             keymaster ssh rsa dsa openssh 
+landcareresearch-pgbouncer                       Deploys pgbouncer                                             @landcareresearch                                    
+enterprisemodules-ora_profile                    Puppet profiles for installing Oracle Database software a...  @enterprisemodules                                   
+gdsoperations-goaudit                            Manage go-audit                                               @gdsoperations         auditd go-audit goaudit       
+rubiconred-myst                                  Oracle Fusion Middleware - WebLogic, SOA, BPM, IDM, WebCe...  @rubiconred            soa osb bpm fmw idm 12c 11g   
+zleslie-nsd                                      Puppet NSD management module                                  @zleslie               dns openbsd                   
+lvicainne-bashrc                                 Configure the BashRC and Profile                              @lvicainne             bashrc profile skel bash      
+bibigon812-quagga                                Puppet module to manage Quagga                                @bibigon812            quagga bgp ospf pim zebra     
+geoffwilliams-filemagic                          Edit files the easy way using Puppet - like magic             @geoffwilliams                                       
+puppetlabs-node_gce[0;31m DEPRECATED[0m                   Puppet Google Compute Module                                  @puppetlabs            cloud google node-gce         
+alanpetersen-helix                               Manages Perforce Helix components: client, server, proxy ...  @alanpetersen                                        
+ULHPC-sudo                                       Configure and manage sudo and sudoers files                   @ULHPC                 sudo sudoers security         
+pdxcat-amanda                                    Amanda Module for Puppet                                      @pdxcat                backup amanda                 
+opentable-aws_powershell                         A module that will install the AWS PowerShell tools to a ...  @opentable             powershell aws windows        
+b4ldr-logrotate                                  Logrotate module                                              @b4ldr                                               
+jbussdieker-carbon                               Puppet Carbon management module                               @jbussdieker           whisper graphite python carbon
+LeLutin-smartd                                   Manages the smartmontools package including the smartd da...  @LeLutin                                             
+geoffwilliams-puppet_solaris_service[0;31m DEPRECATED[0m  Patch the puppet solaris service with extra variables         @geoffwilliams                                       
+warrenpnz-aide                                   A puppet module for installing and configuring AIDE (Adva...  @warrenpnz             aide                          
+soerenbe-syslog_ng                               Installs, configures, and manages Syslog-ng package inclu...  @soerenbe                                            
+zanloy-vim                                       Manage VIM via puppet.                                        @zanloy                centos debian gentoo suse     
+simp-auditd                                      A SIMP puppet module for managing auditd and audispd          @simp                  simp auditd audispd           
+jbussdieker-daemontools                          Daemontools Module                                            @jbussdieker           daemontools service ubuntu    
+genebean-nxlog                                   This module manages NXLog                                     @genebean              logging nxlog eventlog        
+puppet-amanda                                    Amanda Module for Puppet                                      @puppet                amanda backup                 
+stackforge-glance                                Puppet module for OpenStack Glance                            @stackforge                                          
+simp-sudo                                        Manage sudo                                                   @simp                  simp sudo                     
+kavishree-apache                                 Installs, configures, and manages Apache virtual hosts, w...  @kavishree                                           
+yguenane-git                                     A Git module                                                  @yguenane              git debian el centos          
+sensson-directadmin                              A module to install and configure DirectAdmin                 @sensson               directadmin                   
+cornfeedhobo-nano                                Install nano with handy syntax highlighting. Optionally m...  @cornfeedhobo          nano editor                   
+pennycoders-openssh                              Puppet OpenSSH Module                                         @pennycoders                                         
+zanloy-bash                                      Manage BASH via puppet.                                       @zanloy                                              
+jgreat-docker                                    Manage docker containers natively with a 'docker' Service...  @jgreat                                              
+llehmijo-snmp_rhel                               UNKNOWN                                                       @llehmijo              snmp rhel                     
+gildas-firewall                                  Unified Firewall management for Windows, Linux, Mac OS/X      @gildas                                              
+cumuluslinux-cumulus_interface_policy            Module for enforcing allowed interfaces on Cumulus Linux      @cumuluslinux                                        
+ottode-chronos                                   Installs and configures chronos framework                     @ottode                                              
+simp-compliance_markup                           Compliance-mapping annotation for Puppet code                 @simp                  simp security reporting       
+ruxit-ruxit_agent                                This downloads and installs the ruxit agent                   @ruxit                 install upgrade ruxit agent   
+simp-mcollective[0;31m DEPRECATED[0m                      Manages MCollective agents, clients, and middleware of an...  @simp                  voxpupuli mcollective         
+iu-aide                                          Installs, configures, and manages AIDE (Advanced Intrusti...  @iu                    aide security audit ids cis   
+ULHPC-bash                                       Configure and manage Bourne Again SHell (Bash) dotfiles a...  @ULHPC                 shell gnu bash                
+sharumpe-tomcat                                  Manages tomcat (version 6 or 7) in /etc/tomcat(6)             @sharumpe                                            
+svarrette-ulimit                                 Puppet Ulimit module, fork from arioch/puppet-ulimit          @svarrette             ulimit                        
+venmo-sentry                                     Puppet module for managing the Sentry realtime event logg...  @venmo                 sentry event alerting logging 
+sethlyons-tac_plus                               Installs, configures, and manages tac_plus.                   @sethlyons             tac-plus freebsd              
+kemra102-zabbix[0;31m DEPRECATED[0m                       Module for managing Zabbix Server & Client.                   @kemra102              zabbix monitoring             
+swizzley88-artifact                              Download and update artifacts                                 @swizzley88            artifact update refresh       
+diabol-logrotate                                 Logrotate module                                              @diabol                                              
+lightoze-bacula                                  Manages Bacula server and clients                             @lightoze              bacula backup                 
+seteam-splunk                                    Manage and deploy Splunk servers and forwarders               @seteam                splunk windows logging        
+desalvo-frontier                                 Puppet module for Frontier configuration                      @desalvo               frontier squid cvmfs          
+pvbouwel-tomcat                                  Setup tomcat instances                                        @pvbouwel                                            
+saw-reviewboard                                  Install and control reviewboard                               @saw                   reviewboard trac codereview   
+devopsy-puppet_decrypt                           Simple encryption/decryption of secret data for Puppet        @devopsy               security                      
+joshuar-vnstat                                   A module for vnstat                                           @joshuar               vnstat network linux          
+shr3kst3r-glacier                                Install the glacier-cmd for accessing Amazon Glacier from...  @shr3kst3r             rhel redhat centos centos aws 
+millerjl1701-samba                               Puppet module for configuring samba.                          @millerjl1701                                        
+jhoblitt-perlbrew                                Manages perlbrew based Perl5 installations                    @jhoblitt                                            
+maestrodev-maestro_demo                          MaestroDev Maestro Demo Compositions and Projects             @maestrodev            maestrodev maestro demo       
+wwkimball-dovecot                                Fully manages dovecot and its plugins                         @wwkimball             dovecot hiera                 
+LeLutin-asterisk                                 Install and configure the Asterisk PBX service                @LeLutin               asterisk sip iax pbx voip     
+parshipelite-f5                                  Manages F5 BIG-IP Application Delivery Controllers            @parshipelite          f5 bigip network adc ltm      
+alexggolovin-vsftpd                              LINUX-VSFTPD                                                  @alexggolovin          vsftpd ftp alexggolovin       
+erwbgy-activemq                                  Run ActiveMQ instances under Runit                            @erwbgy                activemq runit                
+autostructure-image_build                        Build Docker and ACI images using Puppet code                 @autostructure                                       
+compete-hiera_yamlgpg                            Provides a hiera backend that decrypts gpg encrypted valu...  @compete               decrypt encrypt gpg yaml hiera
+remyma-karaf                                     Install and configure karaf osgi server.                      @remyma                java karaf osgi               
+camptocamp-augeasfacter                          Camptocamp AugeasFacter Module                                @camptocamp            augeas facter                 
+edestecd-mariadb                                 Puppet Module for managing MariaDB                            @edestecd              mariadb mysql db galera       
+sharumpe-tomcat6                                 Manages tomcat6 in /etc/tomcat6                               @sharumpe                                            
+duritong-munin                                   Puppet module for Munin monitoring                            @duritong              munin                         
+geoffwilliams-tcpwrappers                        tcpwrappers on linux using augeas                             @geoffwilliams                                       
+ptomulik-macro                                   Define and evaluate macros in puppet manifests                @ptomulik              puppet macro invoke value     
+puppetlabs-splunk_hec                            Puppet report processor using Splunk HEC                      @puppetlabs                                          
+joshbeard-mcmyadmin                              Install the McMyAdmin control panel for managing Minecraf...  @joshbeard             minecraft mcmyadmin           
+xebialabs-xldeploy                               Puppet module for xldeploy                                    @xebialabs             deployment                    
+eyp-audit                                        auditd management                                             @eyp                                                 
+jpadams-runyer                                   Automagically create mco/Live Management tasks for *nix o...  @jpadams               mco agents custom live pe     
+heini-wait_for                                   A pseudo resource type to wait for a condition to become ...  @heini                                               
+oneandone-puppet1and1                            Manage 1&1 cloud servers with Puppet                          @oneandone                                           
+nmtcc-remctl                                     Remctl configuration module                                   @nmtcc                 remctl redhat centos fedora   
+blackknight36-snmp[0;31m DEPRECATED[0m                    Simple Network Management Protocol is for monitoring netw...  @blackknight36         snmp net-snmp monitoring      
+memoussati-postgresql                            Offers support for basic management of PostgreSQL databases.  @memoussati                                          
+helio-fluentbit                                  Installs and manages Fluentbit for Debian and Ubuntu          @helio                                               
+counsyl-memcached                                Puppet module for installing and configuring memcached        @counsyl                                             
+mrpuppet-tagmail                                 A report processor plugin for re-enabling the tagmail fea...  @mrpuppet                                            
+panaman-tps                                      The TPS Report Module is a simple defined resource that c...  @panaman               file templates multiline      
+ericohtake-javaplugin64                          This module manages Java Plugin 64-Bits (JRE)                 @ericohtake            windows java plugin           
+Aethylred-gitlab                                 A module for installing and managing GitLab with Apache       @Aethylred             gitlab apache                 
+soufas-audit_history_command                     Module to configure and install immutable commands histor...  @soufas                audit history bash commands   
+ULHPC-network                                    Configure various network aspects (interfaces etc.)           @ULHPC                 network interface             
+ULHPC-sysadmins                                  Configuration of a single system administrator account (l...  @ULHPC                 users root localadmin sudo ssh
+wwkimball-postfix                                Fully manages postfix with full Hiera support                 @wwkimball             postfix hiera                 
+brutus777-authorized_keys                        UNKNOWN                                                       @brutus777             ssh roles authorized-keys     
+tomitakussaari-snmp_rhel                         UNKNOWN                                                       @tomitakussaari        snmp rhel snmpd               
+TubeMogul-aerospike                              Aerospike servers management via Puppet                       @TubeMogul             aerospike database nosql      
+stxjk-haproxy                                    Configures HAProxy servers and manages the configuration ...  @stxjk                                               
+gabe-ngrok                                       Installs and configures ngrok binary and tunnels              @gabe                  ngrok                         
+onlynone-hiera_yamlgpg                           Provides a hiera backend that decrypts gpg encrypted valu...  @onlynone              hiera yaml gpg encrypt decrypt
+slackey-exhibitor                                Manages Exhibitor for zookeeper nodes                         @slackey               exhibitor zookeeper           
+fhuertas-tomcat7                                 Manual (without package system) installation of tomcat7       @fhuertas              tomcat 7 tomcat               
+enterprisemodules-ibm_profile                    Easy customisable profile classes for IBM MQ and IBM IIB ...  @enterprisemodules                                   
+carlasouza-virt                                  Virt Module for Puppet                                        @carlasouza            kvm xen openvz libvirt        
+talamoig-icinga                                  Icinga2 Puppet Module                                         @talamoig              icinga nagios monitoring      
+jbussdieker-monit                                Monit Module                                                  @jbussdieker           ubuntu monit process          
+deviseit-barman                                  BaRMan module                                                 @deviseit                                            
+klangrud-profile_d                               profile.d Module                                              @klangrud              debian ubuntu rhel centos     
+erwbgy-jboss                                     Install and run JBoss products                                @erwbgy                applications jboss runit      
+eric0-minicat                                    Make and display a mini-catalog for a specified node          @eric0                 face catalog                  
+runthebusiness-mysqlexec                         This class runs mysql functions from the command line.        @runthebusiness        mysql debian ubuntu centos    
+ccin2p3-syslog_ng                                A module for generating syslog-ng configuration files.        @ccin2p3                                             
+rafaelfc-phpqatools                              Manage PHP QA Tools (http://phpqatools.org) using Puppet      @rafaelfc              php pear phpqa phptools       
+otherskins-ansible                               This module install and configure Ansible.                    @otherskins            ansible puppet hiera-5        
+loomsen-elkstack                                 Installs an ELK stack                                         @loomsen               elk logstash kibana           
+simp-vox_selinux                                 This class manages SELinux on RHEL based systems - FORKED...  @simp                                                
+sharumpe-sudoers                                 Sets up sudoers file, both global parameters and user rules.  @sharumpe              alpha suse sudoers            
+diegolima-vim                                    Manage VIM via puppet.                                        @diegolima             vim redhat debian ubuntu      
+willdurand-stoplight                             This module manages Stoplight, a powerful build monitorin...  @willdurand            build tool stoplight          
+ULHPC-pubkeyfs                                   Configure and manage pubkeyfs, a FUSE file system exposin...  @ULHPC                 ldap ssh public-keys user keys
+ULHPC-slurm                                      Configure and manage Slurm: A Highly Scalable Resource Ma...  @ULHPC                 slurm munge slurmd slurmdbd   
+puppetfinland-monit                              Setup monit                                                   @puppetfinland                                       
+hajee-connect_encrypted                          YAML importer for Encrypted Data                              @hajee                                               
+ivaldi-rsnapshot                                 Rsnapshot master and node configuration with auto generat...  @ivaldi                rsnapshot ssh keys backups    
+nationbuilder-graphite                           manages carbon daemons for a graphite installation            @nationbuilder                                       
+hajee-connect_yaml                               YAML importer for Connect                                     @hajee                                               
+brandonwamboldt-php                              PHP module                                                    @brandonwamboldt       php composer nginx fpm ubuntu 
+beersy-pe_code_manager_easy_setup                Sets up code manager                                          @beersy                                              
+binbashfr-xymon_report                           A Puppet report handler for sending notifications to Xymon    @binbashfr             report xymon                  
+ccaum-autoami                                    Automatically update AMIs on Puppet changes                   @ccaum                 virtualization cloud ec2 ami  
+kb-midnight_commander                            Installs and globally configures GNU midnight commander.      @kb                    mc ncurses tui gpm            
+codingfuture-cflogsink                           Centralized logging                                           @codingfuture                                        
+darin-rt                                         Puppet module of managing Request Tracker                     @darin                 requeset-tracker rt           
+new23d-lpep                                      LDAP passwd Enumerator for Puppet                             @new23d                rhel ldap centos              
+simp-tpm                                         Manages TPM 1.2 and TBOOT                                     @simp                  simp tpm txt intel tboot      
+cesnet-kafka                                     Apache Kafka Puppet Module                                    @cesnet                kafka messaging               
+optiz0r-sabayon                                  Extends Puppet with support for the Sabayon Linux distrib...  @optiz0r               sabayon entropy               
+gousto-php                                       PHP module                                                    @gousto                                              
+kritz-vagrantlamp                                Easy Vagrant LAMP provisioning                                @kritz                 vagrant lamp apache php fpm   
+erwbgy-wso2                                      Install and run WSO2 products                                 @erwbgy                runit esb wso2 identity       
+ptomulik-packagex_portsx                         Ports provider for packagex resource type                     @ptomulik              freebsd package ports provider
+pmovil-elastic_filebeat                          Elastic filebeat installation/configuration                   @pmovil                                              
+stschulte-oracle                                 Manage the oratab through puppet                              @stschulte             oracle oratab                 
+avi-puppet                                       Avi networks puppet module                                    @avi                                                 
+tkishel-unlock_puppet                            Unlock puppet agent runs exceeding runtimeout or runinterval  @tkishel                                             
+ardichoke-arpwatch                               Install and manage arpwatch                                   @ardichoke             arpwatch network monitoring   
+autostructure-harden_windows_server              Hardens Windows Server 2008 R2                                @autostructure                                       
+steroidg-snd                                     Module to search a string within a file. If found, either...  @steroidg                                            
+sevendials-get_iplayer                           Installs get_iplayer. Configures service for web-based PVR    @sevendials                                          
+crayfishx-rsyslog[0;31m DEPRECATED[0m                     Manage rsyslog v8 configuration                               @crayfishx                                           
+ULHPC-nfs                                        Configure and manage NFS (client and/or server)               @ULHPC                 nfs                           
+robofirm-php                                     Installs PHP FPM and extensions with the ability to confi...  @robofirm              php php-fpm php-ext           
+alexggolovin-lamp                                LAMP basic configuration and deploy module                    @alexggolovin          lamp linux apache mysql php   
+ciscoucs-ucsm_dockerdc                           Deployment module for Cisco UCSM with Docker Datacenter.      @ciscoucs                                            
+paulche-concat                                   Concat module                                                 @paulche                                             
+micptolshaw-doatools                             Spin up, modify and destroy whole environments inside AWS.    @micptolshaw           aws stack vpc subnet          
+martyewings-add_hosts_entry                      Provides a task to add hosts file entries to remote hosts     @martyewings                                         
+joshuar-duply                                    A module for duply                                            @joshuar                                             
+puppet-homeassistant                             Configures Home Assistant - home automation platform. htt...  @puppet                iot hue nest kodi plex ifttt  
+logicminds-gitlab_mirrors                        Installs and Configures the gitlab-mirrors project            @logicminds                                          
+camlow325-grafanadash                            Installs graphite and grafana                                 @camlow325                                           
+logdna-logdna                                    Puppet module to install and configure LogDNA Agent           @logdna                                              
+quartsize-rsh                                    Installs and manages rsh servers and clients                  @quartsize             hpc                           
+olevole-ssh                                      Manages SSH                                                   @olevole                                             
+wilrnh-xdm                                       Puppet module to manage the installation and configuratio...  @wilrnh                                              
+DracoBlue-nginx                                  NGINX module for Puppet >=3.0x                                @DracoBlue             nginx ubuntu gentoo           
+sbitio-hiera_yaml_hierarchy_expander             Hiera backend plugin that expands the hierarchy definitio...  @sbitio                hiera backend yaml            
+kb-systemd                                       Manages systemd-specific things (so everything).              @kb                    init emacs logind sucks       
+sl0m0-ipset                                      Linux IP sets management                                      @sl0m0                 ipset linux firewall iptables 
+frozenfoxx-vundle                                Puppet module to configure Vundle.                            @frozenfoxx                                          
+lbetz-mcollective                                Setup and configure MCollective server, client and user o...  @lbetz                                               
+fsouza-aws                                       This module provides the ability to manage AWS resources      @fsouza                                              
+jpadams-windows_diff_enable                      Enables Windows Puppet file resource diff on par with Linux   @jpadams                                             
+dmcnicks-mcoconfig                               Helper module for configuring MCollective                     @dmcnicks                                            
+dmcnicks-gitlab                                  Installs and configures Omnibus Gitlab and provides custo...  @dmcnicks                                            
+oxc-postfix                                      Configure the postfix mailserver                              @oxc                   postfix postconf              
+justinclayton-serf                               Downloads serf and manages serf agents                        @justinclayton         serf redhat centos gossip     
+thespain-veeamagent                              This module manages the Veeam Backup Agent.                   @thespain                                            
+vzach-ambari                                     This module installs Ambari (the hadoop management and mo...  @vzach                 ambari hadoop                 
+garethr-remotesyslog                             Install and configure the remote_syslog service from Pape...  @garethr               syslog papertrail logs ubuntu 
+lukrop-antigen                                   Installs antigen to easily manage your zsh plugins, calle...  @lukrop                                              
+fhuertas-jre_install                             Install JRE without package system. This module install a...  @fhuertas              jre java                      
+puppetfinland-bacula                             Setup Bacula Directors, StorageDaemons and FileDaemons wi...  @puppetfinland                                       
+marcgascon-profile_d                             profile-d Module ables you to manage files under /etc/pro...  @marcgascon                                          
+reidmv-puppet_run_scheduler                      Configure and distribute Puppet run frequency using Cron ...  @reidmv                                              
+flyinprogrammer-splunkuf                         DO NOT USE Splunk Universal Forwarder Install                 @flyinprogrammer       splunk universalforwarder     
+tykeal-ini_config                                Control a complete inifile                                    @tykeal                                              
+darkmatter68-stunnel                             stunnel management                                            @darkmatter68          stunnel tunnel tls ssl        
+keshav2211-eyaml                                 Installation and setup of hiera eyaml backend and CLI         @keshav2211            eyaml hiera-eyaml eyaml-keys  
+dillec-asterisk                                  Install and configure the Asterisk PBX service                @dillec                asterisk puppet puppet-forge  
+bodgit-carbon                                    Puppet Module for managing the Carbon daemons                 @bodgit                carbon graphite               
+icann-speedtest                                  Command line interface for testing internet bandwidth usi...  @icann                                               
+petems-fish                                      Configure Fish Shell                                          @petems                                              
+ULHPC-bind                                       Configure and manage bind                                     @ULHPC                 bind                          
+jgazeley-nagios                                  Manage Nagios, NRPE, NSCA, PNP4Nagios, BPI and other moni...  @jgazeley                                            
+ULHPC-multipath                                  Configure multipath to detect multiple paths to devices f...  @ULHPC                 storage multipath             
+camptocamp-collectd                              Install and configure collectd on Debian and RedHat systems   @camptocamp                                          
+blackknight36-bacula                             This module is a continuation of the rharrison10-bacula m...  @blackknight36         bacula backup                 
+memoussati-docker                                Module for installing and managing docker                     @memoussati                                          
+hackerhappyhour-docker                           Module for installing and managing docker                     @hackerhappyhour       docker devops container       
+cnacorrea-bash                                   This module is meant to manage the bash shell environment.    @cnacorrea             bash profile security         
+furhouse-postfixadmin                            Configures Postfix Admin, a web based administration inte...  @furhouse              postfixadmin postfix          
+janschumann-rvm                                  A puppet module for installing and using RVM (Ruby Versio...  @janschumann                                         
+mugurax-collectd                                 Forked from Puppet module for Collectd                        @mugurax               collectd statistics graphite  
+hastexo-location                                 UNKNOWN                                                       @hastexo                                             
+PhilFriderici-gnomish                            Manage Gnome 2.x & Mate 1.x Desktop application icons and...  @PhilFriderici         gnome mate desktop            
+godp1301-postgresql                              PostgreSQL defined resource types                             @godp1301                                            
+lexkastro-easysquid                              Installs and congfigures squid proxy in an easy way.          @lexkastro                                           
+sysdig-falco                                     Sysdig Falco: Behavioral Activity Monitoring With Contain...  @sysdig                                              
+jethrocarr-virtual_user                          Very simple lightweight virtual user management module        @jethrocarr                                          
+rfletcher-aws_cli                                A puppet module for AWS command line tools                    @rfletcher                                           
+raccourci-munin                                  Configure munin master, node and plugins (Fork from ssm-m...  @raccourci             munin graphing trending       
+smash-tor                                        This project tracks the tor puppet module that manages th...  @smash                                               
+panaceya-bind                                    Panaceya Bind Module                                          @panaceya                                            
+geoffwilliams-chocolatey                         Chocolatey package provider for Puppet                        @geoffwilliams         microsoft net dot-net package 
+bjorns-acmd                                      AEM Command Line Interface                                    @bjorns                                              
+mmattice-apt                                     Provides an interface for managing Apt source, key, and d...  @mmattice                                            
+camptocamp-rsyslogv8                             Puppet Module to install and configure Rsyslog-v8             @camptocamp                                          
+beersy-taskulator                                Experimental task installs modules and executes arbitrary...  @beersy                                              
+simp-simp_pki_service                            A SIMP module for setting up a SIMP-specific DogTag CA        @simp                  simp dogtag pki ca            
+factorit-grafana                                 This module provides Grafana, a dashboard and graph edito...  @factorit              grafana graphite influxdb     
+ptomulik-backports                               Backport some features to older puppet versions               @ptomulik                                            
+tykeal-jjb                                       Management for OpenStack's Jenkins Job Builder                @tykeal                                              
+albatrossflavour-puppet_health_check             Carries out basic health checks on the puppet infrastruct...  @albatrossflavour                                    
+virtualdesktopdevops-wembroker                   The wembroker puppet community module contains resources ...  @virtualdesktopdevops  dsc citrix wem norskale       
+kpn-wildfly                                      WildFly multi-instance module                                 @kpn                                                 
+call-workstation                                 Puppet module for managing a workstation with yaml            @call                                                
+deric-barman                                     Barman (Backup and Recovery Manager for PostgreSQL) module    @deric                                               
+MiMediaINC-php_fastcgi                           Configures upstart job for php5-cgi                           @MiMediaINC            ubuntu fastcgi upstart nginx  
+virtualdesktopdevops-xd7vda                      Citrix Xendesktop 7.x master image creation with VDA inst...  @virtualdesktopdevops  dsc citrix master vda wem     
+ULHPC-xen                                        Configure and manage Xen                                      @ULHPC                 xen virtualization            
+geekify-cloudwatchlogs                           Forked from kemra102 - Configure AWS Cloudwatch Logs on A...  @geekify               aws cloud watch logs amazon   
+autostructure-tripwire[0;31m DEPRECATED[0m                Installs and configures tripwire                              @autostructure                                       
+pmuller-ipset                                    Linux IP sets management                                      @pmuller               ipset linux firewall iptables 
+puppet-ipset                                     Linux ipsets management                                       @puppet                ipset linux firewall iptables 
+dylanratcliffe-bolt_vagrant                      Dynamic inventory for bolt from a vagrant environment         @dylanratcliffe                                      
+simp-ima                                         Manages IMA                                                   @simp                  simp ima                      
+mvasilenko-docker                                Module for installing and managing docker                     @mvasilenko                                          
+alanpetersen-p4utils                             Various custom types for interacting with a Perforce serv...  @alanpetersen                                        
+j0hnds-chrony                                    Manage chrony daemon on Linux                                 @j0hnds                                              
+garthk-mosh                                      Puppet module for Mosh                                        @garthk                mosh                          
+roshan-ssh                                       Manages SSH                                                   @roshan                                              
+autostructure-applocker[0;31m DEPRECATED[0m               Manage Microsoft Windows AppLocker rules                      @autostructure                                       
+fervid-applocker                                 Manage Microsoft Windows AppLocker rules                      @fervid                                              
+dhogland-splunk                                  UNKNOWN                                                       @dhogland              ubuntu rhel splunk syslog     
+caezsar-rsyslog                                  Manage rsyslog client and server                              @caezsar                                             
+beersy-pe_client_tools_easy_setup                Easily install PE client tools                                @beersy                                              
+themeier-ssh                                     Manages SSH                                                   @themeier                                            
+kpn-advanced_security_policy                     This module sets Advanced Security Policy settings on Win...  @kpn                                                 
+vlshch-puppetmodule19                            README test                                                   @vlshch                                              
+xenolog-l23network                               Puppet module for configure network features                  @xenolog                                             
+josenk-clienttags                                /etc/clienttags for a puppet managed self-service environ...  @josenk                                              
+kb-openssh_server                                Installs and configures openssh-server.                       @kb                    openssh sshd ssh              
+puppetlabs-pe_tech_check                         Provides Tasks to capture data for PE Tech Check              @puppetlabs                                          
+call-xcode_cli_tools                             Installs Xcode Command Line Tools                             @call                                                
+umaritimus-mssql                                 Puppet module to install and manage Microsoft SQL Server      @umaritimus                                          
+ULHPC-vnc                                        Install and configure vnc                                     @ULHPC                 vnc                           
+fervid-harden_windows_server                     Hardens Windows Server 2008 R2                                @fervid                                              
+ULHPC-syslog                                     Configure and manage syslog                                   @ULHPC                 syslog                        
+ULHPC-openssl                                    Configure OpenSSL and manage X509 certificates (generatio...  @ULHPC                 ssl openssl certificates keys 
+ULHPC-mysql                                      Configure and manage MySQL                                    @ULHPC                 mysql sql database            
+LeLutin-spamassassin                             Spamassassin Module                                           @LeLutin                                             
+roshan-tomcat                                    Puppet module for Tomcat                                      @roshan                tomcat java apache            
+kpengboy-firewall                                Temporary fork of puppetlabs-firewall with PR 721 applied     @kpengboy                                            
+profitbricks-profitbricks                        Manage ProfitBricks cloud environment with Puppet             @profitbricks                                        
+fschaer-omd                                      A module that allows to build an OMD server (nagios+check...  @fschaer                                             
+gennadyvoronkov-dcos                             Manage DC/OS nodes                                            @gennadyvoronkov                                     
+simp-oath                                        Installation and config for pam_oath rpm                      @simp                  simp oath totp                
+Ecetera-caapm                                    Collection of Puppet modules for managing CA Application ...  @Ecetera               windows redhat ca apm wily    
+squreshi157-bitbucket                            Install Atlassian Bitbucket Server                            @squreshi157                                         
+kb-pam_mount                                     Installs and configures pam_mount.                            @kb                    pam fstab mount               
+simp-simp_bolt                                   A SIMP module to manage Puppetlabs Bolt                       @simp                  simp bolt                     
+jeff1evesque-cis_benchmark                       Hardens linux environment using cis benchmark.                @jeff1evesque                                        
+ilanco-s3cmd                                     S3cmd Module                                                  @ilanco                                              
+puppetlabs-healthcheck_lite                      Provides Tasks to capture data for healthcheck lite           @puppetlabs                                          
+webneat-collect                                  Collect module                                                @webneat               concat files fragments        
+jksnapp-shibboleth                               A module for installing and managing shibboleth               @jksnapp               shibboleth                    
+tarun4-chocolatey                                Chocolatey package provider for Puppet                        @tarun4                microsoft net dot-net package 
+geoffwilliams-puppetserver_gem                   Puppet Labs Puppetserver Gem Module (emergency hotfix)        @geoffwilliams                                       
+gousto-mysql                                     Installs, configures, and manages the MySQL service.          @gousto                                              
+viirya-presto                                    Install Facebook Presto distributed SQL engine.               @viirya                                              
+lmaxexchange-ptpd                                Manages the Precision Time Procotol software, ptpd.           @lmaxexchange                                        
+dankreek-tshock                                  A TShock Terraria Server module                               @dankreek                                            
+kb-byobu                                         Install byobu (historically known as screen-profiles) and...  @kb                    byobu screen tmux console     
+vmindru-percona                                  Puppet module for percona                                     @vmindru                                             
+kb-xscreensaver                                  Installs and globally configures XScreenSaver.                @kb                    x11 xscreensaver              
+konradkuczynski-flyway                           Installs and manage flyway command line tool and gives de...  @konradkuczynski                                     
+brettswift-nodesite                              Nodejs web app deployments                                    @brettswift            nodejs application deployment 
+Siebjee-dkim                                     Standalone DKIM configurator                                  @Siebjee                                             
+urgi-galaxy_roles_profiles                       Contains roles and profiles for a Galaxy server management.   @urgi                  debian centos galaxy          
+fraenki-wforce                                   Anti-Abuse for servers at authentication time                 @fraenki               wforce weakforced abuse policy
+viirya-storm                                     Install Storm cluster.                                        @viirya                storm                         
+ordenull-wordpress                               Installs and manages WordPress, including setup, generati...  @ordenull                                            
+ULHPC-openldap                                   Configure and manage openldap                                 @ULHPC                 openldap ldap                 
+shresthassh-puppetagent                          Uniform puppet.conf file                                      @shresthassh                                         
+jethrocarr-mail                                  Builds a mail server ideal for personal or small organisa...  @jethrocarr                                          
+pdsupport-pagerduty                              A Puppet report processor for sending alerts to Pagerduty.    @pdsupport                                           
+jethrocarr-soe                                   Sets up a sensible Standard Operating Environment. This i...  @jethrocarr                                          
+Enucatl-nginx                                    Slim nginx config generator                                   @Enucatl                                             
+Sparco-modules                                   Module for installing environment-modules and configure m...  @Sparco                                              

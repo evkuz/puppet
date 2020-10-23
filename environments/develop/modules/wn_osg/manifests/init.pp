@@ -39,6 +39,7 @@
 # - Ставим пакет osg-oasis. Нужно для CVMFS
 # - Ставим пакет singularity, есть на это запрос пользователей.
 # - Проверяем ОТСУТСТВИЕ пакета telnet
+# - Ставим пакет CPUID. Навеяно работой в fasm
 
 #include wn_osg::htcondor_repo
 #include wn_osg::authconfig_ldap
@@ -101,13 +102,6 @@ file_line {"set_run_interval":
 path  => '/etc/puppetlabs/puppet/puppet.conf',
 line  => 'runinterval=1800',
 }
-
-
-
-
-
-
-
 
 ##########################################################
 
@@ -247,6 +241,15 @@ remounts => true,
 
     }
 
+############# 06.07.2020 подсветка *.sh  файлов
+   file { "/usr/share/nano/sh.nanorc":
+    ensure => file,
+    source => 'puppet:///modules/wn_osg/sh.nanorc', 
+    mode => "0644",
+    owner => 'root',
+    group => 'root',
+
+    }
 
 
 
@@ -255,15 +258,13 @@ remounts => true,
 #    ensure => latest
 #  }
 
-package {['lsof', 'redhat-lsb-core','krb5-workstation', 'osg-oasis', 'singularity']:
+package {['lsof', 'redhat-lsb-core','krb5-workstation', 'osg-oasis', 'singularity', 'cpuid']:
 ensure => latest
 #, 'osg-wn-client-glexec'
 }
 
 package {'telnet':
 ensure => absent
-
-
 }
 
 ################################# Создаем папку /nfs если такой нет
@@ -359,7 +360,9 @@ nameserver 159.93.14.7
 service {"ntpd":
   ensure => running,
   enable => 'true',
-  hasstatus =>'true',
+  hasstatus =>'false',
+  status    => 'service ntpd status | /bin/grep -q "is running"',
+  stop  => 'service ntpd stop && /bin/rm -f /var/run/ntpd.pid'
 }
 ############################## check content of /etc/rc.d/rc.local
    file { "/etc/rc.d/rc.local":

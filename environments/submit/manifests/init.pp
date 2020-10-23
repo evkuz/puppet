@@ -1,3 +1,5 @@
+include submit_node
+
 package {'lsof':
 ensure => latest
 }

@@ -4,7 +4,8 @@
 echo "Loading iptables rules"
 
 NET_JINR="159.93.0.0/16"
-NET_221="10.93.220.0/22" # Сеть серых ip для кластера grid nova work-nodes
+NET_22X_PRIV="10.93.220.0/22" # Сеть серых ip для кластера grid nova work-nodes
+NET_220_PRIV="10.220.16.0/20" # Сеть серых ip для кластера grid nova work-nodes
 
 #It's not a router so don't forward
 #echo 1 > /proc/sys/net/ipv4/ip_forward
@@ -42,7 +43,8 @@ iptables -t mangle -A POSTROUTING -j ACCEPT
 
 iptables -t filter -A INPUT -p tcp -m tcp --dport 22 -m comment --comment "Allow SSH for ALL" -j ACCEPT
 iptables -t filter -A INPUT -s $NET_JINR -m comment --comment "Let ALL from JINR network" -j ACCEPT
-iptables -t filter -A INPUT -s $NET_221  -m comment --comment "Allow local 10.93.221.xxx cluster, though it's already fine" -j ACCEPT
+iptables -t filter -A INPUT -s $NET_22X_PRIV  -m comment --comment "Allow local 10.93.220.0/16 cluster, though it's already fine" -j ACCEPT
+iptables -t filter -A INPUT -s $NET_220_PRIV  -m comment --comment "Allow local 10.220.16.0/20 cluster, though it's already fine" -j ACCEPT
 
 #+++++++++++++++++++++++ GRID special rules ++++++++++++++++++++++++++++++++++++++++++++++++++++
 

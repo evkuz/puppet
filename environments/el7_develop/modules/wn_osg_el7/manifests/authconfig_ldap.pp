@@ -53,5 +53,10 @@ class wn_osg::authconfig_ldap {
    
    }
 
-# --enablekrb5 --krb5realm JINR.RU --krb5kdc kerberos.jinr.ru:88,kerberos-1.jinr.ru:88,kerberos-2.jinr.ru:88 --krb5adminserver kerberos.jinr.ru:749 --enablemkhomedir --update
+ exec {"authconfig_02":
+   command => 'authconfig --enableldap --ldapserver="ldap://auth-1.jinr.ru/,ldap://auth-2.jinr.ru/,ldap://auth-3.jinr.ru/" --ldapbasedn="dc=jinr,dc=ru" --update',
+   path    => '/usr/sbin/',
+}
+
+
 }

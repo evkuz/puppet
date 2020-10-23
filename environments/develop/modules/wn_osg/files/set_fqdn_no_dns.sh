@@ -21,7 +21,7 @@
 # Не всегда интерфейс называется eth0, поэтому заменяем название интерфейса на '.*' 26.11.2019
 # 04.12.2019 Однако у всех узлов один и тот же broadcast "brd 10.93.223.255"
 #IP=$(echo `/sbin/ip a` | sed -n -e 's/^.*inet \(.*\)\(scope global .*\).*/\1/p' | cut -d ' ' -f1 | cut -d '/' -f1)
-IP=$(echo `/sbin/ip a` | sed -n -e 's/^.*inet \(.*\)\(brd 10.93.223.255\).*/\1/p' | cut -d ' ' -f1 | cut -d '/' -f1)
+IP=$(echo `/sbin/ip a` | sed -n -e 's/^.*inet \(.*\)\(brd 10.220.31.255\).*/\1/p' | cut -d ' ' -f1 | cut -d '/' -f1)
 #echo "IP=$IP"
 SUBN=$(echo $IP | cut -d'.' -f3)
 #echo "SUBN=$SUBN"
@@ -30,8 +30,8 @@ NUM=$(echo $IP | cut -d'.' -f4)
 #echo "NUM=$NUM"
 # | cut -d'/' -f1)
 #echo "NUM=$NUM"
-FQDN="10-93-"${SUBN}"-"${NUM}".jinr.ru"
-SHORT="10-93-"${SUBN}"-"${NUM}
+FQDN="10-220-"${SUBN}"-"${NUM}".jinr.ru"
+SHORT="10-220-"${SUBN}"-"${NUM}
 
 #Вот тут задаем hostname и не надо ничего перезагружать.
 /bin/hostname ${FQDN}

@@ -1,6 +1,9 @@
+# - Проверяем наличие symlink /etc/condor/condor_config  ->  /nfs/condor/condor-etc/condor_config.global  //exec {"check$
+#
+
 class wn_osg_el7 {
 
-	package {['mc', 'tree', 'nmap-ncat']:
+	package {['mc', 'tree', 'nmap-ncat', 'ntp']:
         	  ensure => present,
         }
 	
@@ -34,11 +37,14 @@ nameserver 159.93.14.7
 }
 
 ############## add ntpd service check
-#service {"ntpd":
-#  ensure => running,
-#  enable => 'true',
-#  hasstatus =>'true',
-#}
+service {"ntpd":
+  ensure => running,
+  enable => 'true',
+  hasstatus =>'false',
+  status    => 'service ntpd status | /bin/grep -q "is running"',
+  stop  => 'service ntpd stop && /bin/rm -f /var/run/ntpd.pid'
+}
+
 ############################## check content of /etc/rc.d/rc.local
    file { "/etc/rc.d/rc.local":
     ensure => file,
@@ -64,8 +70,55 @@ contain wn_osg_el7::cvmfs
 
 
 contain wn_osg_el7::put_ssh_key
+##################################### 
+file_line {"tune_nanorc":
+ensure => present,
+path   => '/etc/nanorc',
+line   => 'include "/usr/share/nano/sh.nanorc"',
+match  => '^#\sinclude\s"/usr/share/nano/sh.nanorc"',
+# match will look for a line beginning with "# include /usr/share/nano/sh.nanorc" and replace it with the value in line
+}
+############# подсветка *.bash  файлов
+   file { "/usr/share/nano/bash.nanorc":
+    ensure => file,
+    source => 'puppet:///modules/wn_osg_el7/bash.nanorc',
+    mode => "0644",
+    owner => 'root',
+    group => 'root',
+
+    }
+
+############# 15.07.2020 подсветка *.sh  файлов
+   file { "/usr/share/nano/sh.nanorc":
+    ensure => file,
+    source => 'puppet:///modules/wn_osg_el7/sh.nanorc',
+    mode => "0644",
+    owner => 'root',
+    group => 'root',
+
+    }
 
 
+################################################################
+package {['lsof', 'redhat-lsb-core','krb5-workstation', 'osg-oasis', 'singularity', 'cpuid']:
+ensure => latest
+#, 'osg-wn-client-glexec'
+}
+
+package {'telnet':
+ensure => absent
+}
+
+   file { "/root/init_lvm.sh":
+    ensure => file,
+    source => 'puppet:///modules/wn_osg_el7/init_lvm.sh',
+    mode => "0755",
+    owner => 'root',
+    group => 'root',
+}
+
+
+#contain wn_osg::check_config_symlink
 }# wn_osg_el7
 
 #####################
