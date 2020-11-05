@@ -63,7 +63,8 @@ contain wn_osg::dune_vo
 ######################### 30.05.2019 ###########################
 #contain wn_osg::authconfig_ldap
 
-########################################################## 16.12.2019
+########################################################## 27.10.2020
+contain wn_osg::cvmfs
 
 ##############################################
 
@@ -260,7 +261,6 @@ remounts => true,
 
 package {['lsof', 'redhat-lsb-core','krb5-workstation', 'osg-oasis', 'singularity', 'cpuid']:
 ensure => latest
-#, 'osg-wn-client-glexec'
 }
 
 package {'telnet':
@@ -317,31 +317,6 @@ file { '/etc/auto.nfs':
     restart =>  "/bin/bash -c 'service autofs restart'" ,
  #   notify => Service["condor_restart"],
   }
-############################## add cvmfs settings
-   file { "/etc/cvmfs/default.local":
-    ensure => file,
-    source => 'puppet:///modules/wn_osg/cvmfs_default.local', # develop сработает ли ?
-    mode => "0644",
-    owner => 'root',
-    group => 'root',
-
-    notify => Exec["cvmfs_apply"],
-    }
-
-    exec { "cvmfs_apply":
-#      command     => "/bin/bash -c cvmfs_config probe && ls /cvmfs/nova.opensciencegrid.org",
-#      command => "cvmfs_config probe",
-      command => "ls /cvmfs/nova.opensciencegrid.org",
-      path    => "/bin/",
-    }
-
-#  service { "condor_restart":
-#    require => Service['autofs'],
-#    name   => "condor",
-#    ensure => running,
-#    enable => true,
-#    restart =>  "/bin/bash -c 'service condor restart'" ,
-#  }
 
    
 ###########################  add resolv.conf content

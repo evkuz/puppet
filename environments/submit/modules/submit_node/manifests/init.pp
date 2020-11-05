@@ -3,7 +3,7 @@
 class submit_node {
 
 contain submit_node::put_ssh_key
-
+contain submit_node::cvmfs
 
 ############## add ntpd service check
 service {"ntpd":
@@ -64,6 +64,11 @@ service {'rsyslog':
   group  => "condor",
   }
 
+# exclude osg-oasis as it's submit node
+package {['redhat-lsb-core','krb5-workstation', 'mosh', 'singularity', 'cpuid']:
+ensure => latest
+#, 'osg-wn-client-glexec'
+}
 
 
 # contain submit_node::authconfig_ldap

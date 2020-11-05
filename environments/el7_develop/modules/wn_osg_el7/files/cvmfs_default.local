@@ -1,4 +1,4 @@
-CVMFS_REPOSITORIES=nova.opensciencegrid.org, mu2e.opensciencegrid.org
+CVMFS_REPOSITORIES=nova.opensciencegrid.org, mu2e.opensciencegrid.org,dayabay.jinr.ru
 CVMFS_HTTP_PROXY="http://lcgsqd01.jinr.ru:3128|http://lcgsqd02.jinr.ru:3128"
 CVMFS_CACHE_BASE=/mnt/cvmfs
 CVMFS_QUOTA_LIMIT=25000

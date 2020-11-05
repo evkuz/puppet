@@ -1,4 +1,4 @@
-class wn_osg_el7::cvmfs {
+class submit_node::cvmfs {
 
 # file {'/mnt/cvmfs':
 #  ensure => directory,
@@ -40,7 +40,7 @@ file { '/var/lib/cvmfs':
 ############################## add cvmfs settings
    file { "/etc/cvmfs/default.local":
     ensure => file,
-    source => 'puppet:///modules/wn_osg_el7/cvmfs_default.local', # develop сработает ли ?
+    source => 'puppet:///modules/submit_node/cvmfs_default.local', # develop сработает ли ?
     mode => "0644",
     owner => 'cvmfs',
     group => 'cvmfs',
@@ -60,7 +60,7 @@ file { '/var/lib/cvmfs':
 ################# 
    file { "/etc/cvmfs/domain.d/jinr.ru.conf":
     ensure => file,
-    source => 'puppet:///modules/wn_osg_el7/cvmfs/domain.d/jinr.ru.conf', # develop сработает ли ?
+    source => 'puppet:///modules/submit_node/cvmfs/domain.d/jinr.ru.conf', # develop сработает ли ?
     mode => "0644",
     owner => 'cvmfs',
     group => 'cvmfs',
@@ -72,7 +72,6 @@ file { '/var/lib/cvmfs':
 #################   directory
    file { "/etc/cvmfs/keys/jinr.ru":
     ensure =>  directory,
-#    source => 'puppet:///modules/wn_osg_el7/cvmfs/keys/jinr.ru.pub', # develop сработает ли ?
     mode => "0644",
     owner => 'cvmfs',
     group => 'cvmfs',
@@ -86,7 +85,7 @@ file { '/var/lib/cvmfs':
 
    file { "/etc/cvmfs/keys/jinr.ru/jinr.ru.pub":
     ensure => file,
-    source => 'puppet:///modules/wn_osg_el7/cvmfs/keys/jinr.ru.pub', # develop сработает ли ?
+    source => 'puppet:///modules/submit_node/cvmfs/keys/jinr.ru.pub', # develop сработает ли ?
     mode => "0644",
     owner => 'cvmfs',
     group => 'cvmfs',

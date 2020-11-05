@@ -1,13 +1,4 @@
-class wn_osg_el7::cvmfs {
-
-# file {'/mnt/cvmfs':
-#  ensure => directory,
-#  mode   => "0755",
-#  owner => 'cvmfs',
-#  group => 'cvmfs',
-  
-#  }
-
+class wn_osg::cvmfs {
 
         package {"cvmfs":
         ensure => present,
@@ -40,7 +31,7 @@ file { '/var/lib/cvmfs':
 ############################## add cvmfs settings
    file { "/etc/cvmfs/default.local":
     ensure => file,
-    source => 'puppet:///modules/wn_osg_el7/cvmfs_default.local', # develop сработает ли ?
+    source => 'puppet:///modules/wn_osg/cvmfs_default.local', # develop сработает ли ?
     mode => "0644",
     owner => 'cvmfs',
     group => 'cvmfs',
@@ -50,17 +41,18 @@ file { '/var/lib/cvmfs':
     }
 
     exec { "cvmfs_apply":
-      command     => "/bin/bash -c 'cvmfs_config probe && ls /cvmfs/nova.opensciencegrid.org'",
-#      command => "cvmfs_config probe",
-#      command => "ls /cvmfs/nova.opensciencegrid.org",
-      path    => "/bin/",
+#      command     => "bash -c 'cvmfs_config probe && ls /cvmfs/nova.opensciencegrid.org'",
+       command     => "/bin/bash -c 'cvmfs_config probe'",
+       cwd => '/cvmfs',
+#      provider => 'shell',
+       refreshonly => true
     }
 
 
 ################# 
    file { "/etc/cvmfs/domain.d/jinr.ru.conf":
     ensure => file,
-    source => 'puppet:///modules/wn_osg_el7/cvmfs/domain.d/jinr.ru.conf', # develop сработает ли ?
+    source => 'puppet:///modules/wn_osg/cvmfs/domain.d/jinr.ru.conf', # develop сработает ли ?
     mode => "0644",
     owner => 'cvmfs',
     group => 'cvmfs',
@@ -72,7 +64,6 @@ file { '/var/lib/cvmfs':
 #################   directory
    file { "/etc/cvmfs/keys/jinr.ru":
     ensure =>  directory,
-#    source => 'puppet:///modules/wn_osg_el7/cvmfs/keys/jinr.ru.pub', # develop сработает ли ?
     mode => "0644",
     owner => 'cvmfs',
     group => 'cvmfs',
@@ -86,7 +77,7 @@ file { '/var/lib/cvmfs':
 
    file { "/etc/cvmfs/keys/jinr.ru/jinr.ru.pub":
     ensure => file,
-    source => 'puppet:///modules/wn_osg_el7/cvmfs/keys/jinr.ru.pub', # develop сработает ли ?
+    source => 'puppet:///modules/wn_osg/cvmfs/keys/jinr.ru.pub', # develop сработает ли ?
     mode => "0644",
     owner => 'cvmfs',
     group => 'cvmfs',
