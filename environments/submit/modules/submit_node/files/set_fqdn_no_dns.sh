@@ -15,15 +15,19 @@
 #/etc/sysconfig/network
 #/etc/sysctl.conf
 
+me=`basename "$0"`
+SETUPLOG=/var/log/rc_local.log
+
+touch $SETUPLOG
+cp /dev/null $SETUPLOG
+
+echo "$(date +"%d-%m-%Y %T") Start running $me script" |& tee $SETUPLOG
+
 # 17.12.2019
 # Формируем в другом виде xxx-xxx-xxx-xxx
-
 # Не всегда интерфейс называется eth0, поэтому заменяем название интерфейса на '.*' 26.11.2019
 # 04.12.2019 Однако у всех узлов один и тот же broadcast "brd 10.93.223.255"
 #IP=$(echo `/sbin/ip a` | sed -n -e 's/^.*inet \(.*\)\(scope global .*\).*/\1/p' | cut -d ' ' -f1 | cut -d '/' -f1)
-
-#BROADCAST="10.220.31.255"
-PUPPET_SERVER="10.220.16.5"
 IP=$(echo `/sbin/ip a` | sed -n -e 's/^.*inet \(.*\)\(brd 10.220.31.255\).*/\1/p' | cut -d ' ' -f1 | cut -d '/' -f1)
 #echo "IP=$IP"
 OCT_1=$(echo $IP | cut -d'.' -f1)
@@ -76,27 +80,11 @@ cp /dev/null /etc/hosts
 
 printf "127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4\n" >> /etc/hosts
 printf "::1         localhost localhost.localdomain localhost6 localhost6.localdomain6\n" >> /etc/hosts
-printf "$PUPPET_SERVER puppet-osg.jinr.ru\n" >> /etc/hosts
+printf "10.220.16.5 puppet-osg.jinr.ru\n" >> /etc/hosts
 printf "$IP ${FQDN} localhost\n" >> /etc/hosts
 
 # 18.02.2020 После смены имени надо перезапустить логи
 service rsyslog restart
 
-#/etc/init.d/network restart
-#service network restart
-
-# And push puppet agent to get certificate an retrieve catalogue
-
-#FILE="/etc/puppetlabs/puppet/ssl/certs/${FQDN}.pem"
-
-#if [ ! -f $FILE ]
-#then
-#    echo "Сертификат для ${FQDN} не существует, создаем новый"
-#puppet agent -t --waitforcert 5
-
-#else 
-#puppet agent -t
-
-#fi
-
+echo "$(date +"%d-%m-%Y %T") Finishing script $me" |& tee $SETUPLOG
 

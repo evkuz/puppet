@@ -63,7 +63,7 @@ cp /dev/null /etc/hosts
 
 printf "127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4\n" >> /etc/hosts
 printf "::1         localhost localhost.localdomain localhost6 localhost6.localdomain6\n" >> /etc/hosts
-printf "10.93.221.8 puppet-osg.jinr.ru\n" >> /etc/hosts
+printf "10.220.16.5 puppet-osg.jinr.ru\n" >> /etc/hosts
 printf "$IP ${FQDN} localhost\n" >> /etc/hosts
 
 #/etc/init.d/network restart

@@ -1,0 +1,3 @@
+/dev/mapper/wn-cvmfs    /mnt/cvmfs      ext4    rw,relatime,data=ordered
+/dev/mapper/wn-condor   /mnt/condor     ext4    rw,relatime,data=ordered
+

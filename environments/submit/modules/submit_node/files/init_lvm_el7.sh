@@ -10,9 +10,9 @@
 me=`basename "$0"`
 ############################### parameters 
 LVMD="/dev/vdb"
-DNAME="wn"
+DNAME="submit"
 VNAME_1="cvmfs"
-VNAME_2="condor"
+VNAME_2="home"
 
 LV_1_SZ="20G"
 LV_2_SZ="150G"
@@ -54,7 +54,7 @@ else
 fi # of else
 ################## Now create logical volumes
 #   VNAME_1="cvmfs"
-#VPATH_1="/var/lib/cvmfs"
+VPATH_1="/var/lib/cvmfs"
 lvs | grep $VNAME_1
      if [ $? -eq 0 ]; then # Значит раздел уже есть
         echo "$(date +"%d-%m-%Y %T") The volume $VNAME_1 is already exists, so do nothing and go next step" >> $SETUPLOG
@@ -112,13 +112,6 @@ lvs | grep $VNAME_2
 #################
 #fi # of else
 ############################################## Условие проверили, теперь форматируем фс.
-# Перед форматированием  проверяем, вдруг уже сделано.
-# В этом поможет blkid. ОСтавляем на будущее.
-#
-# /dev/mapper/wn-cvmfs: LABEL="cvmfs" UUID="42f3cb1a-da54-4bb4-9f1c-dccd99db9178" TYPE="ext4" 
-# /dev/mapper/wn-condor: LABEL="condor" UUID="c36a88f4-d637-4d04-bde9-b92c5bda0c95" TYPE="ext4"
-#
-
   sleep 3
 df -Th | grep "^/dev" | grep $VNAME_1
      if [ $? -eq 0 ]; then # Значит fs уже есть 
@@ -148,9 +141,7 @@ df -Th | grep "^/dev" | grep $VNAME_2
 #################
    sleep 3
 ########################################### Теперь монтируем
-#
-
-   VPATH_1="/mnt/cvmfs"
+   VPATH_1="/var/lib/cvmfs"
    mount /dev/$DNAME/$VNAME_1 $VPATH_1
 	if [ $? -eq 0 ]
 	then
@@ -160,16 +151,12 @@ df -Th | grep "^/dev" | grep $VNAME_2
 	  echo "$(date +"%d-%m-%Y %T") Could not [mount /dev/$DNAME/$VNAME_1 $VPATH_1]" >> $SETUPLOG
 	fi
 #################
-sleep 1
-   VPATH_2="/mnt/condor"
+sleep 3
+   VPATH_2="/home"
    mount /dev/$DNAME/$VNAME_2 $VPATH_2
 	if [ $? -eq 0 ]
 	then
 	  echo "$(date +"%d-%m-%Y %T") Successfully [mount /dev/$DNAME/$VNAME_2 $VPATH_2]" >> $SETUPLOG
-	  mkdir $VPATH_2"/spool"
-          mkdir $VPATH_2"/execute" 
- 
-          chown -R condor.condor $VPATH_2
 	else
 	  echo "$(date +"%d-%m-%Y %T") Could not [mount /dev/$DNAME/$VNAME_2 $VPATH_2]" >&2
 	  echo "$(date +"%d-%m-%Y %T") Could not [mount /dev/$DNAME/$VNAME_2 $VPATH_2]" >> $SETUPLOG
@@ -178,7 +165,7 @@ sleep 1
 #fi # of else
 
 echo "$(date +"%d-%m-%Y %T") Finishing script $me" |& tee -a $SETUPLOG
-sleep 1
+sleep 5
 
 #cp -rp /home/condor/* /mnt/condor
 

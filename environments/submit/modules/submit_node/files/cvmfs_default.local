@@ -1,5 +1,5 @@
 CVMFS_REPOSITORIES=oasis.opensciencegrid.org,singularity.opensciencegrid.org,juno.ihep.ac.cn,dayabay.jinr.ru
 CVMFS_HTTP_PROXY="http://lcgsqd01.jinr.ru:3128|http://lcgsqd02.jinr.ru:3128"
-CVMFS_CACHE_BASE=/mnt/cvmfs
+CVMFS_CACHE_BASE=/var/lib/cvmfs
 CVMFS_QUOTA_LIMIT=20000
 

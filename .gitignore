@@ -1,2 +1,5 @@
+environments/develop/modules/wn_osg/files/id_rsa.pub
 environments/juno/modules/stdlib/
 environments/el7_develop/modules/stdlib/
+environments/submit/modules/stdlib/
+

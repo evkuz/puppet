@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# На узлах NOvA пока Centos 6, поэтому пока без el7
 SETUPLOG="/var/log/node_setup.log"
 DEV="/dev/vdb" # Где искать lvm
 VIRT_DEV="wn"  #worknode

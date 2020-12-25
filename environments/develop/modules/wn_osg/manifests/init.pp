@@ -171,16 +171,6 @@ match  => '^#\sinclude\s"/usr/share/nano/sh.nanorc"',
 # 03.10.2019 Также это помогло при ОТКЛЮЧЕНИИ репозитория osg-upcoming, т.к. он перестал работать с OSG 3.4, и доступен только для версии OSG 3.5
 # Да, используем массив/список репозиториев, так тоже можно было :)
 wn_osg::repo_file {["osg-el6-upcoming.repo", "osg-el6.repo"]: notify_class =>'yum_update', }
-#file_line {"osg_upcoming_enabled":
-#ensure => present,
-#path   => '/etc/yum.repos.d/osg-el6-upcoming.repo',
-#line   => 'enabled=1', # Такая строка должна быть
-#match  => '^enabled=0.*', # match will look for a line beginning with "# include /usr/share/nano/sh.nanorc" and replace it with the value in line
-#multiple => true,
-#replace_all_matches_not_matching_line => false,
-#}
-
-
 
 #yumrepo { 'osg-el6-upcoming.repo':
 

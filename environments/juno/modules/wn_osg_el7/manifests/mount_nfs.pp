@@ -1,8 +1,8 @@
 # Дублируем тут монтирование, которое выполняет autofs
 
-class mount_autofs{
+class mount_nfs{
 #######################  Создаем папку /nfs
- /nfs    -fstype=nfs,defaults condor.jinr.ru:/nfs
+# /nfs    -fstype=nfs,defaults condor.jinr.ru:/nfs
 # /mnt/local_repo -fstype=nfs,defaults condor.jinr.ru:/mnt/vdc
 
  file {'/nfs':

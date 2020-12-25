@@ -9,31 +9,30 @@ class submit_node::cvmfs {
 #  }
 
 
-        package {"cvmfs":
-        ensure => present,
-        before => File['/mnt/cvmfs'],
-
-        }
-
-
-
-file { '/var/lib/cvmfs':
-  ensure => link,
-  target => '/mnt/cvmfs/',
-  owner => 'cvmfs',
-  group => 'cvmfs',
-  force => true,
-  require => Package["cvmfs"],
-}
-
- file {'/mnt/cvmfs':
-  ensure => directory,
-  mode   => "0755",
-  owner => 'cvmfs',
-  group => 'cvmfs',
-  require => Package["cvmfs"],
-  
+package {"cvmfs":
+  ensure => present,
+#  before => File['/mnt/cvmfs'],
   }
+
+
+# 08.12.2020 Убираем, т.к. решено монтировать напрямую в /var/lib/cvmfs
+#file { '/var/lib/cvmfs':
+#  ensure => link,
+#  target => '/mnt/cvmfs/',
+#  owner => 'cvmfs',
+#  group => 'cvmfs',
+#  force => true,
+#  require => Package["cvmfs"],
+#}
+
+#file {'/mnt/cvmfs':
+#  ensure => directory,
+#  mode   => "0755",
+#  owner => 'cvmfs',
+#  group => 'cvmfs',
+#  require => Package["cvmfs"],
+  
+#  }
 
 
 
@@ -50,7 +49,8 @@ file { '/var/lib/cvmfs':
     }
 
     exec { "cvmfs_apply":
-      command     => "/bin/bash -c 'cvmfs_config probe && ls /cvmfs/nova.opensciencegrid.org'",
+      command     => "/bin/bash -c 'cvmfs_config probe'",
+#&& ls /cvmfs/nova.opensciencegrid.org'",
 #      command => "cvmfs_config probe",
 #      command => "ls /cvmfs/nova.opensciencegrid.org",
       path    => "/bin/",
@@ -78,9 +78,6 @@ file { '/var/lib/cvmfs':
 
     notify => Exec["cvmfs_apply"],
     }
-
-
-
 ################
 
    file { "/etc/cvmfs/keys/jinr.ru/jinr.ru.pub":
@@ -109,12 +106,12 @@ file { '/var/lib/cvmfs':
 
 $line_1 = "/dev/mapper/wn-cvmfs    /mnt/cvmfs      ext4    defaults        0       0"
 $line_2 = "/dev/mapper/wn-condor   /mnt/condor     ext4    defaults        0       0"
-$line_3 = "10.93.221.50:/nova	   /nova	   nfs	   rw,vers=4.1	   0	   0"
+#$line_3 = "10.93.221.50:/nova	   /nova	   nfs	   rw,vers=4.1	   0	   0"
 
-#file_line {"nfs_folders":
+#file_line {"cvmfs_automount":
 #ensure => present,
 #path   => '/etc/fstab',
-#line   => [$line_1, $line_2, $line_3],
+#line   => [$line_1, $line_2],
 #}
 
 

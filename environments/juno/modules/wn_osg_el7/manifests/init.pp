@@ -1,5 +1,5 @@
 # - Проверяем наличие symlink /etc/condor/condor_config  ->  /nfs/condor/condor-etc/condor_config.global  //exec {"check$
-#
+# - Проверяе актуальное состояние файла init_lvm_el7.sh
 
 class wn_osg_el7 {
 
@@ -55,7 +55,8 @@ service {"ntpd":
 }
 ############################## add set_fqdn.sh script
 # But why do it regulary ? 
-#contain wn_osg_el7::set_fqdn_no_dns
+# ...because sheet happens like changing ip of puppet master
+contain wn_osg_el7::set_fqdn_no_dns
 ##############################
 
 
@@ -66,6 +67,21 @@ contain wn_osg_el7::mount_folder
 contain wn_osg_el7::cvmfs
 
 contain wn_osg_el7::put_ssh_key
+
+##################################### fstab проверка наличия нужных строк
+file_line {"tune_fstab_cvmfs":
+ensure => present,
+path   => '/etc/fstab', 
+line   => '/dev/mapper/wn-cvmfs    /mnt/cvmfs      ext4    rw,relatime,data=ordered',
+}
+
+file_line {"tune_fstab_condor":
+ensure => present,
+path   => '/etc/fstab', 
+line   => '/dev/mapper/wn-condor   /mnt/condor      ext4    rw,relatime,data=ordered',
+}
+
+
 ##################################### Подсветка nano
 # Это не сработает, если не установлен модуль stdlib, т.к. в нем ресурс file_line
 # Либо, если модуль установлен, но не заинклуден в самом начале окружения.
@@ -128,9 +144,9 @@ ensure => absent
     group => 'root',
 }
 
-   file { "/root/init_lvm.sh":
+   file { "/root/init_lvm_el7.sh":
     ensure => file,
-    source => 'puppet:///modules/wn_osg_el7/init_lvm.sh',
+    source => 'puppet:///modules/wn_osg_el7/init_lvm_el7.sh',
     mode => "0755",
     owner => 'root',
     group => 'root',

@@ -1,3 +1,4 @@
+include stdlib
 include submit_node
 
 package {'lsof':

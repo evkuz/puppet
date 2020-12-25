@@ -20,7 +20,7 @@
 
 SETUPLOG="/var/log/node_setup.log"
 SCRIPT_1="/root/set_fqdn_no_dns.sh"
-SCRIPT_2="/root/init_lvm.sh"
+#SCRIPT_2="/root/init_lvm.sh"
 
 touch $SETUPLOG
 cp /dev/null $SETUPLOG
@@ -68,7 +68,7 @@ fi
 
 # run script
 #/root/set_fqdn.sh
-#/root/set_fqdn_no_dns.sh
+/root/set_fqdn_no_dns.sh
 $SCRIPT_1
 if [ $? -eq 0 ]
 then
@@ -80,16 +80,17 @@ fi
 
 
 # run script
+# Когда диск lvm уже создан, то не нужно каждый раз переформатировать 
 #/root/init_lvm.sh
-$SCRIPT_2
+#$SCRIPT_2
 
-if [ $? -eq 0 ]
-then
-  echo "$(date +"%d-%m-%Y %T") Successfully executed last command of script ${SCRIPT_2}" >> $SETUPLOG #init_lvm.sh
-else
-  echo "$(date +"%d-%m-%Y %T") Could NOT execute last command of script ${SCRIPT_2}" >> $SETUPLOG #init_lvm.sh
+#if [ $? -eq 0 ]
+#then
+#  echo "$(date +"%d-%m-%Y %T") Successfully executed last command of script ${SCRIPT_2}" >> $SETUPLOG #init_lvm.sh
+#else
+#  echo "$(date +"%d-%m-%Y %T") Could NOT execute last command of script ${SCRIPT_2}" >> $SETUPLOG #init_lvm.sh
 
-fi
+#fi
 
 
 # Запускаем сервисы, остановленные ранее
