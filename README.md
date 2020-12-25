@@ -9,6 +9,12 @@ Static config files or config file templates would typically be part of that.
 
 Репозиторий для конфигурации puppet + foreman
 
+25.12.2020
+- mount_autofs переименовал в mount_lvm
+- Доработан скрипт init_lvm_el7.sh
+- Много других изменений
+
+
 23.10.2020
 - Добавлено окружение juno для одноименного эксперимента
 - Добавлено окружение common - пустое, когда puppet не нужен, или мешает.
